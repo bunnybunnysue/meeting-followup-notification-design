@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+<link rel="stylesheet" href="tokens.css">
+<style>
+  a { color: var(--text-primary); text-decoration: none; }
+  a:hover { color: var(--text-strong-primary); }
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  @keyframes dcspin { to { transform: rotate(360deg); } }
+</style>
+</helmet>
+
+<div style="display:flex; height:100vh; width:100%; background:var(--background-bg-darker-neutral); font-family:'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; overflow:hidden;">
+
+  <nav style="width:236px; min-width:236px; background:var(--background-bg-default); border-right:1px solid var(--border-subtle-neutral); display:flex; flex-direction:column; padding:20px 12px;">
+    <div style="padding:4px 12px 18px;">
+      <div style="font-size:15px; font-weight:600; line-height:20px; color:var(--text-stronger-neutral);">Meeting follow-up</div>
+      <div style="font-size:12px; line-height:16px; color:var(--text-neutral); margin-top:2px;">Notifications prototype</div>
+    </div>
+
+    <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="5">
+      <a onClick="{{ item.onClick }}" style="{{ item.style }}">
+        <span style="{{ item.dotStyle }}"></span>
+        <span style="{{ item.labelStyle }}">{{ item.label }}</span>
+      </a>
+    </sc-for>
+
+    <div style="flex:1;"></div>
+    <div style="padding:12px; font-size:11px; line-height:16px; color:var(--text-neutral); border-top:1px solid var(--border-subtle-neutral);">
+      The account&rsquo;s follow-up email checkbox is <strong>{{ adminEmailLabel }}</strong> — change it on the Admin tab to see the client controls gray out.
+    </div>
+  </nav>
+
+  <div style="flex:1; overflow-y:auto; min-width:0;">
+
+    <!-- ================= ZOOMMATE ================= -->
+    <sc-if value="{{ isZoommate }}" hint-placeholder-val="{{ true }}">
+      <div style="max-width:720px; margin:0 auto; padding:36px 32px 96px; display:flex; flex-direction:column; gap:24px;">
+        <div>
+          <div style="font-size:20px; font-weight:600; line-height:26px; color:var(--text-stronger-neutral);">ZoomMate task emails</div>
+          <div style="font-size:14px; line-height:20px; color:var(--text-neutral); margin-top:4px;">One email per meeting. It lists only the follow-ups that are still waiting to be generated — at launch, generating costs compute, so nothing runs until the user asks for it.</div>
+        </div>
+
+        <!-- NEW: full list -->
+        <div style="background:var(--background-bg-default); border-radius:16px; flex-shrink:0; box-shadow:var(--drop-shadow-sm); overflow:hidden;">
+          <div style="padding:12px 24px; display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--border-subtle-neutral);">
+            <span style="font-size:12px; color:var(--text-neutral);">Zoom &lt;notifications@zoom.us&gt;</span>
+            <span style="font-size:12px; color:var(--text-neutral);">2:40 PM</span>
+          </div>
+          <div style="padding:24px; display:flex; flex-direction:column; gap:18px;">
+            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+              <span style="font-size:17px; font-weight:600; line-height:22px; color:var(--text-stronger-neutral);">Product Roadmap Sync: 4 follow-ups waiting for you</span>
+              <span style="font-size:11px; font-weight:500; padding:3px 9px; border-radius:999px; background:var(--fill-subtler-informative); color:var(--text-informative);">New</span>
+            </div>
+            <div style="font-size:13px; line-height:18px; color:var(--text-neutral); margin-top:-10px;">Jul 28, 2026 · 2:00 – 2:30 PM · Hosted by Sarah Chen</div>
+            <div style="font-size:14px; line-height:21px; color:var(--text-strong-neutral);">Here&rsquo;s what came out of your meeting — one click, and ZoomMate takes care of it.</div>
+
+            <div style="display:flex; flex-direction:column; gap:10px;">
+              <div style="border:1px solid var(--border-subtle-neutral); border-radius:14px; padding:14px 16px; display:flex; flex-direction:column; gap:12px;">
+                <div style="display:flex; align-items:center; gap:12px;">
+                  <span style="width:36px; height:36px; border-radius:999px; background:var(--fill-subtler-primary); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><span style="width:17px; height:17px; flex-shrink:0; background:var(--icon-primary); -webkit-mask:url(icons/Tasks.svg) center/contain no-repeat; mask:url(icons/Tasks.svg) center/contain no-repeat;"></span></span>
+                  <span style="flex:1; min-width:0;">
+                    <span style="display:block; font-size:15px; font-weight:500; line-height:20px; color:var(--text-stronger-neutral);">Confirm the pricing update owner with Sarah Chen</span>
+                  </span>
+                  <button onClick="{{ openRun }}" style="height:34px; padding:0 14px; border-radius:999px; border:1px solid var(--border-subtle-neutral); background:var(--background-bg-default); color:var(--text-stronger-neutral); font-size:13px; font-weight:500; font-family:inherit; cursor:pointer; display:flex; align-items:center; gap:6px; flex-shrink:0;"><span style="width:14px; height:14px; flex-shrink:0; background:var(--icon-strong-neutral); -webkit-mask:url(icons/SmartSummary.svg) center/contain no-repeat; mask:url(icons/SmartSummary.svg) center/contain no-repeat;"></span>Generate</button>
+                </div>
+                <div>
+                  <div style="font-size:12px; color:var(--text-neutral); margin-bottom:6px;">Prompt to be sent</div>
+                  <div style="border:1px solid var(--border-subtle-neutral); border-radius:12px; overflow:hidden;">
+                    <div style="padding:12px 14px; font-size:13px; line-height:19px; color:var(--text-strong-neutral);">Draft a short message to Sarah Chen confirming that she owns the pricing update, and restate the two dates agreed in the meeting.</div>
+                    <div style="padding:10px 14px; border-top:1px solid var(--border-subtle-neutral); display:flex; align-items:center; justify-content:flex-end;"><a onClick="{{ openRow }}" style="display:flex; align-items:center; gap:5px; font-size:13px; font-weight:500; cursor:pointer; white-space:nowrap;"><span style="width:13px; height:13px; flex-shrink:0; background:var(--text-primary); -webkit-mask:url(icons/Edit.svg) center/contain no-repeat; mask:url(icons/Edit.svg) center/contain no-repeat;"></span>Customize prompt</a></div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="border:1px solid var(--border-subtle-neutral); border-radius:14px; padding:14px 16px; display:flex; flex-direction:column; gap:12px;">
+                <div style="display:flex; align-items:center; gap:12px;">
+                  <span style="width:36px; height:36px; border-radius:999px; background:var(--fill-subtler-supplementary1); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><span style="width:17px; height:17px; flex-shrink:0; background:var(--icon-supplementary1); -webkit-mask:url(icons/Chat.svg) center/contain no-repeat; mask:url(icons/Chat.svg) center/contain no-repeat;"></span></span>
+                  <span style="flex:1; min-width:0;">
+                    <span style="display:block; font-size:15px; font-weight:500; line-height:20px; color:var(--text-stronger-neutral);">Send the client a thank-you message with next steps</span>
+                  </span>
+                  <button onClick="{{ openRun }}" style="height:34px; padding:0 14px; border-radius:999px; border:1px solid var(--border-subtle-neutral); background:var(--background-bg-default); color:var(--text-stronger-neutral); font-size:13px; font-weight:500; font-family:inherit; cursor:pointer; display:flex; align-items:center; gap:6px; flex-shrink:0;"><span style="width:14px; height:14px; flex-shrink:0; background:var(--icon-strong-neutral); -webkit-mask:url(icons/SmartSummary.svg) center/contain no-repeat; mask:url(icons/SmartSummary.svg) center/contain no-repeat;"></span>Generate</button>
+                </div>
+                <div>
+                  <div style="font-size:12px; color:var(--text-neutral); margin-bottom:6px;">Prompt to be sent</div>
+                  <div style="border:1px solid var(--border-subtle-neutral); border-radius:12px; overflow:hidden;">
+                    <div style="padding:12px 14px; font-size:13px; line-height:19px; color:var(--text-strong-neutral);">Act as a Product Marketing Manager. Draft a thank-you message to the client team recapping the roadmap decisions, and list the three next steps with owners.</div>
+                    <div style="padding:10px 14px; border-top:1px solid var(--border-subtle-neutral); display:flex; align-items:center; justify-content:flex-end;"><a onClick="{{ openRow }}" style="display:flex; align-items:center; gap:5px; font-size:13px; font-weight:500; cursor:pointer; white-space:nowrap;"><span style="width:13px; height:13px; flex-shrink:0; background:var(--text-primary); -webkit-mask:url(icons/Edit.svg) center/contain no-repeat; mask:url(icons/Edit.svg) center/contain no-repeat;"></span>Customize prompt</a></div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="border:1px solid var(--border-subtle-neutral); border-radius:14px; padding:14px 16px; display:flex; flex-direction:column; gap:12px;">
+                <div style="display:flex; align-items:center; gap:12px;">
+                  <span style="width:36px; height:36px; border-radius:999px; background:var(--fill-subtle-neutral); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><img src="icons/GoogleDocs.svg" width="18" height="18" alt=""/></span>
+                  <span style="flex:1; min-width:0;">
+                    <span style="display:block; font-size:15px; font-weight:500; line-height:20px; color:var(--text-stronger-neutral);">Meeting Summary to Google Docs</span>
+                    <span style="display:block; font-size:13px; line-height:18px; color:var(--text-neutral);">Workflow</span>
+                  </span>
+                  <button onClick="{{ openRun }}" style="height:34px; padding:0 14px; border-radius:999px; border:1px solid var(--border-subtle-neutral); background:var(--background-bg-default); color:var(--text-stronger-neutral); font-size:13px; font-weight:500; font-family:inherit; cursor:pointer; display:flex; align-items:center; gap:6px; flex-shrink:0;"><span style="width:14px; height:14px; flex-shrink:0; background:var(--icon-strong-neutral); -webkit-mask:url(icons/PlayFill.svg) center/contain no-repeat; mask:url(icons/PlayFill.svg) center/contain no-repeat;"></span>Run</button>
+                </div>
+                <div style="font-size:13px; line-height:19px; color:var(--text-strong-neutral);">Saves the meeting summary and participant details to a shared Docs folder.</div>
+              </div>
+
+              <div style="border:1px solid var(--border-subtle-neutral); border-radius:14px; padding:14px 16px; display:flex; flex-direction:column; gap:12px;">
+                <div style="display:flex; align-items:center; gap:12px;">
+                  <span style="width:36px; height:36px; border-radius:999px; background:var(--fill-subtle-neutral); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><img src="icons/GoogleDrive.svg" width="18" height="18" alt=""/></span>
+                  <span style="flex:1; min-width:0;">
+                    <span style="display:block; font-size:15px; font-weight:500; line-height:20px; color:var(--text-stronger-neutral);">Save meeting notes to a shared Drive folder</span>
+                    <span style="display:block; font-size:13px; line-height:18px; color:var(--text-neutral);">Workflow</span>
+                  </span>
+                  <button onClick="{{ openRun }}" style="height:34px; padding:0 14px; border-radius:999px; border:1px solid var(--border-subtle-neutral); background:var(--background-bg-default); color:var(--text-stronger-neutral); font-size:13px; font-weight:500; font-family:inherit; cursor:pointer; display:flex; align-items:center; gap:6px; flex-shrink:0;"><span style="width:14px; height:14px; flex-shrink:0; background:var(--icon-strong-neutral); -webkit-mask:url(icons/PlayFill.svg) center/contain no-repeat; mask:url(icons/PlayFill.svg) center/contain no-repeat;"></span>Run</button>
+                </div>
+                <div style="font-size:13px; line-height:19px; color:var(--text-strong-neutral);">Files the notes and transcript into the team folder and links them back to the calendar event.</div>
+              </div>
+
+            </div>
+
+            <div style="display:flex; gap:10px; align-items:center; padding-top:4px;">
+              <button onClick="{{ openPanel }}" style="height:36px; padding:0 18px; border-radius:12px; border:none; background:var(--fill-global-primary); color:#fff; font-size:14px; font-weight:500; font-family:inherit; cursor:pointer;">Open follow-ups</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- NOT STARTED REMINDER -->
+        <div style="background:var(--background-bg-default); border-radius:16px; flex-shrink:0; box-shadow:var(--drop-shadow-sm); overflow:hidden;">
+          <div style="padding:12px 24px; display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--border-subtle-neutral);">
+            <span style="font-size:12px; color:var(--text-neutral);">Zoom &lt;notifications@zoom.us&gt;</span>
+            <span style="font-size:12px; color:var(--text-neutral);">5:30 PM</span>
+          </div>
+          <div style="padding:24px; display:flex; flex-direction:column; gap:16px;">
+            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+              <span style="font-size:17px; font-weight:600; line-height:22px; color:var(--text-stronger-neutral);">4 follow-ups from Product Roadmap Sync are still waiting</span>
+              <span style="font-size:11px; font-weight:500; padding:3px 9px; border-radius:999px; background:var(--fill-subtler-complementary); color:var(--text-complementary); flex-shrink:0;">Reminder</span>
+            </div>
+            <div style="font-size:13px; line-height:18px; color:var(--text-neutral); margin-top:-8px;">Product Roadmap Sync · Jul 28, 2026 · Hosted by Sarah Chen</div>
+            <div style="font-size:14px; line-height:21px; color:var(--text-strong-neutral);">Your follow-ups from Product Roadmap Sync are still waiting — one click and ZoomMate wraps them up for you.</div>
+            <div>
+              <div style="display:flex; align-items:center; gap:12px; padding:12px 0; border-top:1px solid var(--border-subtle-neutral);">
+              <span style="width:36px; height:36px; border-radius:999px; background:var(--fill-subtler-primary); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><span style="width:17px; height:17px; flex-shrink:0; background:var(--icon-primary); -webkit-mask:url(icons/Tasks.svg) center/contain no-repeat; mask:url(icons/Tasks.svg) center/contain no-repeat;"></span></span>
+              <span style="flex:1; min-width:0;">
+                <span style="display:block; font-size:14px; font-weight:500; line-height:19px; color:var(--text-stronger-neutral);">Confirm the pricing update owner with Sarah Chen</span>
+              </span>
+              <button onClick="{{ openRun }}" style="height:34px; padding:0 14px; border-radius:999px; border:1px solid var(--border-subtle-neutral); background:var(--background-bg-default); color:var(--text-stronger-neutral); font-size:13px; font-weight:500; font-family:inherit; cursor:pointer; display:flex; align-items:center; gap:6px; flex-shrink:0;"><span style="width:14px; height:14px; flex-shrink:0; background:var(--icon-strong-neutral); -webkit-mask:url(icons/SmartSummary.svg) center/contain no-repeat; mask:url(icons/SmartSummary.svg) center/contain no-repeat;"></span>Generate</button>
+            </div>
+              <div style="display:flex; align-items:center; gap:12px; padding:12px 0; border-top:1px solid var(--border-subtle-neutral);">
+              <span style="width:36px; height:36px; border-radius:999px; background:var(--fill-subtler-supplementary1); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><span style="width:17px; height:17px; flex-shrink:0; background:var(--icon-supplementary1); -webkit-mask:url(icons/Chat.svg) center/contain no-repeat; mask:url(icons/Chat.svg) center/contain no-repeat;"></span></span>
+              <span style="flex:1; min-width:0;">
+                <span style="display:block; font-size:14px; font-weight:500; line-height:19px; color:var(--text-stronger-neutral);">Send the client a thank-you message with next steps</span>
+              </span>
+              <button onClick="{{ openRun }}" style="height:34px; padding:0 14px; border-radius:999px; border:1px solid var(--border-subtle-neutral); background:var(--background-bg-default); color:var(--text-stronger-neutral); font-size:13px; font-weight:500; font-family:inherit; cursor:pointer; display:flex; align-items:center; gap:6px; flex-shrink:0;"><span style="width:14px; height:14px; flex-shrink:0; background:var(--icon-strong-neutral); -webkit-mask:url(icons/SmartSummary.svg) center/contain no-repeat; mask:url(icons/SmartSummary.svg) center/contain no-repeat;"></span>Generate</button>
+            </div>
+              <div style="display:flex; align-items:center; gap:12px; padding:12px 0; border-top:1px solid var(--border-subtle-neutral);">
+              <span style="width:36px; height:36px; border-radius:999px; background:var(--fill-subtle-neutral); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><img src="icons/GoogleDocs.svg" width="18" height="18" alt=""/></span>
+              <span style="flex:1; min-width:0;">
+                <span style="display:block; font-size:14px; font-weight:500; line-height:19px; color:var(--text-stronger-neutral);">Meeting Summary to Google Docs</span>
+                <span style="display:block; font-size:12px; line-height:17px; color:var(--text-neutral);">Workflow</span>
+              </span>
+              <button onClick="{{ openRun }}" style="height:34px; padding:0 14px; border-radius:999px; border:1px solid var(--border-subtle-neutral); background:var(--background-bg-default); color:var(--text-stronger-neutral); font-size:13px; font-weight:500; font-family:inherit; cursor:pointer; display:flex; align-items:center; gap:6px; flex-shrink:0;"><span style="width:14px; height:14px; flex-shrink:0; background:var(--icon-strong-neutral); -webkit-mask:url(icons/PlayFill.svg) center/contain no-repeat; mask:url(icons/PlayFill.svg) center/contain no-repeat;"></span>Run</button>
+            </div>
+              <div style="display:flex; align-items:center; gap:12px; padding:12px 0; border-top:1px solid var(--border-subtle-neutral);">
+              <span style="width:36px; height:36px; border-radius:999px; background:var(--fill-subtle-neutral); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><img src="icons/GoogleDrive.svg" width="18" height="18" alt=""/></span>
+              <span style="flex:1; min-width:0;">
+                <span style="display:block; font-size:14px; font-weight:500; line-height:19px; color:var(--text-stronger-neutral);">Save meeting notes to a shared Drive folder</span>
+                <span style="display:block; font-size:12px; line-height:17px; color:var(--text-neutral);">Workflow</span>
+              </span>
+              <button onClick="{{ openRun }}" style="height:34px; padding:0 14px; border-radius:999px; border:1px solid var(--border-subtle-neutral); background:var(--background-bg-default); color:var(--text-stronger-neutral); font-size:13px; font-weight:500; font-family:inherit; cursor:pointer; display:flex; align-items:center; gap:6px; flex-shrink:0;"><span style="width:14px; height:14px; flex-shrink:0; background:var(--icon-strong-neutral); -webkit-mask:url(icons/PlayFill.svg) center/contain no-repeat; mask:url(icons/PlayFill.svg) center/contain no-repeat;"></span>Run</button>
+            </div>
+            </div>
+            <div style="display:flex; gap:10px; align-items:center; padding-top:4px;">
+              <button onClick="{{ openRunAll }}" style="height:36px; padding:0 18px; border-radius:12px; border:none; background:var(--fill-global-primary); color:#fff; font-size:14px; font-weight:500; font-family:inherit; cursor:pointer;">Get my follow-ups</button>
+            </div>
+        </div>
+        </div>
+
+        <div style="background:var(--background-bg-default); border-radius:16px; flex-shrink:0; box-shadow:var(--drop-shadow-sm); padding:18px 20px; display:flex; flex-direction:column; gap:14px;">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span style="width:15px; height:15px; flex-shrink:0; background:var(--icon-neutral); -webkit-mask:url(icons/Clock.svg) center/contain no-repeat; mask:url(icons/Clock.svg) center/contain no-repeat;"></span>
+            <span style="font-size:14px; font-weight:500; color:var(--text-stronger-neutral);">When the reminder fires</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div style="display:flex; gap:12px; align-items:baseline;"><span style="width:132px; flex-shrink:0; font-size:13px; font-weight:500; color:var(--text-stronger-neutral);">First email</span><span style="font-size:13px; line-height:19px; color:var(--text-strong-neutral);">~10 min after the follow-up list is ready — the &ldquo;waiting for you&rdquo; email above.</span></div>
+            <div style="display:flex; gap:12px; align-items:baseline;"><span style="width:132px; flex-shrink:0; font-size:13px; font-weight:500; color:var(--text-stronger-neutral);">Reminder</span><span style="font-size:13px; line-height:19px; color:var(--text-strong-neutral);">3 hours after the meeting ends, if nothing has been generated and the list is still unopened.</span></div>
+            <div style="display:flex; gap:12px; align-items:baseline;"><span style="width:132px; flex-shrink:0; font-size:13px; font-weight:500; color:var(--text-stronger-neutral);">Last reminder</span><span style="font-size:13px; line-height:19px; color:var(--text-strong-neutral);">9:00 AM the next working day, in the user&rsquo;s time zone. Nothing after that — the tasks stay in My Notes.</span></div>
+            <div style="display:flex; gap:12px; align-items:baseline;"><span style="width:132px; flex-shrink:0; font-size:13px; font-weight:500; color:var(--text-stronger-neutral);">Never sent when</span><span style="font-size:13px; line-height:19px; color:var(--text-strong-neutral);">the user opened the list, generated or dismissed anything, the meeting produced no follow-ups, or a reminder for the same meeting already went out.</span></div>
+            <div style="display:flex; gap:12px; align-items:baseline;"><span style="width:132px; flex-shrink:0; font-size:13px; font-weight:500; color:var(--text-stronger-neutral);">Batching</span><span style="font-size:13px; line-height:19px; color:var(--text-strong-neutral);">Meetings back to back: the 9:00 AM reminder covers all of them in one email, grouped by meeting.</span></div>
+          </div>
+        </div>
+
+        <!-- ACTION REQUIRED -->
+        <div style="background:var(--background-bg-default); border-radius:16px; flex-shrink:0; box-shadow:var(--drop-shadow-sm); overflow:hidden;">
+          <div style="padding:12px 24px; display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--border-subtle-neutral);">
+            <span style="font-size:12px; color:var(--text-neutral);">Zoom &lt;notifications@zoom.us&gt;</span>
+            <span style="font-size:12px; color:var(--text-neutral);">2:41 PM</span>
+          </div>
+          <div style="padding:24px; display:flex; flex-direction:column; gap:16px;">
+            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+              <span style="font-size:17px; font-weight:600; line-height:22px; color:var(--text-stronger-neutral);">Confirm action items with Sarah Chen</span>
+              <span style="font-size:11px; font-weight:500; padding:3px 9px; border-radius:999px; background:var(--fill-subtler-warning); color:var(--text-warning);">Action required</span>
+            </div>
+            <div style="font-size:13px; line-height:18px; color:var(--text-neutral); margin-top:-8px;">Product Roadmap Sync · Jul 28, 2026 · Hosted by Sarah Chen</div>
+            <div style="font-size:14px; line-height:21px; color:var(--text-strong-neutral);">ZoomMate needs two answers before it can confirm the action items — who owns the pricing update, and the due date.</div>
+            <div>
+              <button onClick="{{ openReview }}" style="height:36px; padding:0 18px; border-radius:12px; border:none; background:var(--fill-global-primary); color:#fff; font-size:14px; font-weight:500; font-family:inherit; cursor:pointer;">Review and continue</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- COMPLETED -->
+        <div style="background:var(--background-bg-default); border-radius:16px; flex-shrink:0; box-shadow:var(--drop-shadow-sm); overflow:hidden;">
+          <div style="padding:12px 24px; display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--border-subtle-neutral);">
+            <span style="font-size:12px; color:var(--text-neutral);">Zoom &lt;notifications@zoom.us&gt;</span>
+            <span style="font-size:12px; color:var(--text-neutral);">2:58 PM</span>
+          </div>
+          <div style="padding:24px; display:flex; flex-direction:column; gap:16px;">
+            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+              <span style="font-size:17px; font-weight:600; line-height:22px; color:var(--text-stronger-neutral);">Your message to Sarah Chen is ready</span>
+              <span style="font-size:11px; font-weight:500; padding:3px 9px; border-radius:999px; background:var(--fill-subtler-success); color:var(--text-success); flex-shrink:0;">Completed</span>
+            </div>
+            <div style="font-size:13px; line-height:18px; color:var(--text-neutral); margin-top:-8px;">Product Roadmap Sync · Jul 28, 2026 · Hosted by Sarah Chen</div>
+            <div style="font-size:14px; line-height:21px; color:var(--text-strong-neutral);">Confirms Sarah Chen as the owner of the pricing update and restates the two dates agreed in the meeting. Nothing was sent yet — open the chat to send it.</div>
+            <div style="border:1px solid var(--border-subtle-neutral); border-radius:14px; padding:14px 16px; display:flex; align-items:center; gap:12px;">
+              <span style="width:36px; height:36px; border-radius:999px; background:var(--fill-subtler-primary); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><span style="width:17px; height:17px; flex-shrink:0; background:var(--icon-primary); -webkit-mask:url(icons/Tasks.svg) center/contain no-repeat; mask:url(icons/Tasks.svg) center/contain no-repeat;"></span></span>
+              <span style="flex:1; min-width:0;">
+                <span style="display:block; font-size:15px; font-weight:500; line-height:20px; color:var(--text-stronger-neutral);">Confirm the pricing update owner with Sarah Chen</span>
+                <span style="display:block; font-size:13px; line-height:18px; color:var(--text-neutral);">Product Roadmap Sync</span>
+              </span>
+              <button onClick="{{ openResult }}" style="height:34px; padding:0 14px; border-radius:999px; border:none; background:var(--fill-subtle-neutral); color:var(--text-stronger-neutral); font-size:13px; font-weight:500; font-family:inherit; cursor:pointer; flex-shrink:0;">View result</button>
+            </div>
+            <div style="border:1px solid var(--border-subtle-neutral); border-radius:14px; overflow:hidden;">
+              <div style="padding:10px 14px; border-bottom:1px solid var(--border-subtle-neutral); display:flex; align-items:center; gap:8px;">
+                <span style="width:14px; height:14px; flex-shrink:0; background:var(--icon-neutral); -webkit-mask:url(icons/Chat.svg) center/contain no-repeat; mask:url(icons/Chat.svg) center/contain no-repeat;"></span>
+                <span style="font-size:12px; color:var(--text-neutral);">Message · to Sarah Chen</span>
+              </div>
+              <div style="padding:14px; display:flex; flex-direction:column; gap:10px;"><div style="font-size:14px; line-height:20px; color:var(--text-stronger-neutral);">Hi Sarah — quick recap from today: you’re owning the pricing revamp, with the draft model due Aug 8 and the partner API scoping review on Aug 14. Shout if either date needs to move.</div></div>
+              <div style="padding:10px 14px; border-top:1px solid var(--border-subtle-neutral); display:flex; align-items:center; gap:8px; flex-wrap:wrap;"><button onClick="{{ openChat }}" style="height:34px; padding:0 14px; border-radius:999px; border:none; background:var(--fill-global-primary); color:#fff; font-size:13px; font-weight:500; font-family:inherit; cursor:pointer; display:flex; align-items:center; gap:6px; flex-shrink:0;"><span style="width:14px; height:14px; flex-shrink:0; background:#fff; -webkit-mask:url(icons/Chat.svg) center/contain no-repeat; mask:url(icons/Chat.svg) center/contain no-repeat;"></span>Open chat with Sarah Chen</button></div>
+            </div>
+        </div>
+        </div>
+
+        <div style="background:var(--background-bg-default); border-radius:16px; flex-shrink:0; box-shadow:var(--drop-shadow-sm); overflow:hidden;">
+          <div style="padding:12px 24px; display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--border-subtle-neutral);">
+            <span style="font-size:12px; color:var(--text-neutral);">Zoom &lt;notifications@zoom.us&gt;</span>
+            <span style="font-size:12px; color:var(--text-neutral);">2:59 PM</span>
+          </div>
+          <div style="padding:24px; display:flex; flex-direction:column; gap:16px;">
+            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+              <span style="font-size:17px; font-weight:600; line-height:22px; color:var(--text-stronger-neutral);">Your message is ready — pick who to send it to</span>
+              <span style="font-size:11px; font-weight:500; padding:3px 9px; border-radius:999px; background:var(--fill-subtler-success); color:var(--text-success); flex-shrink:0;">Completed</span>
+            </div>
+            <div style="font-size:13px; line-height:18px; color:var(--text-neutral); margin-top:-8px;">Product Roadmap Sync · Jul 28, 2026 · Hosted by Sarah Chen</div>
+            <div style="font-size:14px; line-height:21px; color:var(--text-strong-neutral);">ZoomMate couldn’t match a recipient for this one, so it won’t guess. Choose the chat yourself.</div>
+            <div style="border:1px solid var(--border-subtle-neutral); border-radius:14px; padding:14px 16px; display:flex; align-items:center; gap:12px;">
+              <span style="width:36px; height:36px; border-radius:999px; background:var(--fill-subtler-supplementary1); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><span style="width:17px; height:17px; flex-shrink:0; background:var(--icon-supplementary1); -webkit-mask:url(icons/Chat.svg) center/contain no-repeat; mask:url(icons/Chat.svg) center/contain no-repeat;"></span></span>
+              <span style="flex:1; min-width:0;">
+                <span style="display:block; font-size:15px; font-weight:500; line-height:20px; color:var(--text-stronger-neutral);">Send the client a thank-you message with next steps</span>
+                <span style="display:block; font-size:13px; line-height:18px; color:var(--text-neutral);">Product Roadmap Sync</span>
+              </span>
+              <button onClick="{{ openResult }}" style="height:34px; padding:0 14px; border-radius:999px; border:none; background:var(--fill-subtle-neutral); color:var(--text-stronger-neutral); font-size:13px; font-weight:500; font-family:inherit; cursor:pointer; flex-shrink:0;">View result</button>
+            </div>
+            <div style="border:1px solid var(--border-subtle-neutral); border-radius:14px; overflow:hidden;">
+              <div style="padding:10px 14px; border-bottom:1px solid var(--border-subtle-neutral); display:flex; align-items:center; gap:8px;">
+                <span style="width:14px; height:14px; flex-shrink:0; background:var(--icon-neutral); -webkit-mask:url(icons/Chat.svg) center/contain no-repeat; mask:url(icons/Chat.svg) center/contain no-repeat;"></span>
+                <span style="font-size:12px; color:var(--text-neutral);">Message · recipient not identified</span>
+              </div>
+              <div style="padding:14px; display:flex; flex-direction:column; gap:10px;"><div style="font-size:14px; line-height:20px; color:var(--text-stronger-neutral);">Thanks for the session today. We locked the three bets for Q3 — pricing revamp, onboarding rebuild, partner API — and I’ll send the dated plan by Friday.</div></div>
+              <div style="padding:10px 14px; border-top:1px solid var(--border-subtle-neutral); display:flex; align-items:center; gap:8px; flex-wrap:wrap;"><button onClick="{{ openPicker }}" style="height:34px; padding:0 14px; border-radius:999px; border:none; background:var(--fill-global-primary); color:#fff; font-size:13px; font-weight:500; font-family:inherit; cursor:pointer; display:flex; align-items:center; gap:6px; flex-shrink:0;"><span style="width:14px; height:14px; flex-shrink:0; background:#fff; -webkit-mask:url(icons/Search.svg) center/contain no-repeat; mask:url(icons/Search.svg) center/contain no-repeat;"></span>Choose which chat to open</button></div>
+            </div>
+        </div>
+        </div>
+
+        <div style="background:var(--background-bg-default); border-radius:16px; flex-shrink:0; box-shadow:var(--drop-shadow-sm); overflow:hidden;">
+          <div style="padding:12px 24px; display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--border-subtle-neutral);">
+            <span style="font-size:12px; color:var(--text-neutral);">Zoom &lt;notifications@zoom.us&gt;</span>
+            <span style="font-size:12px; color:var(--text-neutral);">3:01 PM</span>
+          </div>
+          <div style="padding:24px; display:flex; flex-direction:column; gap:16px;">
+            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+              <span style="font-size:17px; font-weight:600; line-height:22px; color:var(--text-stronger-neutral);">2 messages are ready</span>
+              <span style="font-size:11px; font-weight:500; padding:3px 9px; border-radius:999px; background:var(--fill-subtler-success); color:var(--text-success); flex-shrink:0;">Completed</span>
+            </div>
+            <div style="font-size:13px; line-height:18px; color:var(--text-neutral); margin-top:-8px;">Product Roadmap Sync · Jul 28, 2026 · Hosted by Sarah Chen</div>
+            <div style="font-size:14px; line-height:21px; color:var(--text-strong-neutral);">The task named two people, so it produced one message each. They’re separate — open one chat at a time.</div>
+            <div style="border:1px solid var(--border-subtle-neutral); border-radius:14px; padding:14px 16px; display:flex; align-items:center; gap:12px;">
+              <span style="width:36px; height:36px; border-radius:999px; background:var(--fill-subtler-primary); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><span style="width:17px; height:17px; flex-shrink:0; background:var(--icon-primary); -webkit-mask:url(icons/Tasks.svg) center/contain no-repeat; mask:url(icons/Tasks.svg) center/contain no-repeat;"></span></span>
+              <span style="flex:1; min-width:0;">
+                <span style="display:block; font-size:15px; font-weight:500; line-height:20px; color:var(--text-stronger-neutral);">Confirm the launch dates with Sarah and Marcus</span>
+                <span style="display:block; font-size:13px; line-height:18px; color:var(--text-neutral);">Product Roadmap Sync</span>
+              </span>
+              <button onClick="{{ openResult }}" style="height:34px; padding:0 14px; border-radius:999px; border:none; background:var(--fill-subtle-neutral); color:var(--text-stronger-neutral); font-size:13px; font-weight:500; font-family:inherit; cursor:pointer; flex-shrink:0;">View result</button>
+            </div>
+            <div style="border:1px solid var(--border-subtle-neutral); border-radius:14px; overflow:hidden;">
+              <div style="padding:10px 14px; border-bottom:1px solid var(--border-subtle-neutral); display:flex; align-items:center; gap:8px;">
+                <span style="width:14px; height:14px; flex-shrink:0; background:var(--icon-neutral); -webkit-mask:url(icons/Chat.svg) center/contain no-repeat; mask:url(icons/Chat.svg) center/contain no-repeat;"></span>
+                <span style="font-size:12px; color:var(--text-neutral);">Message 1 of 2 · to Sarah Chen</span>
+              </div>
+              <div style="padding:14px; display:flex; flex-direction:column; gap:10px;"><div style="font-size:14px; line-height:20px; color:var(--text-stronger-neutral);">Sarah — confirming the pricing draft lands Aug 8 and you’re the owner. I’ll pull the numbers from last quarter for you.</div></div>
+              <div style="padding:10px 14px; border-top:1px solid var(--border-subtle-neutral); display:flex; align-items:center; gap:8px; flex-wrap:wrap;"><button onClick="{{ openChat }}" style="height:34px; padding:0 14px; border-radius:999px; border:none; background:var(--fill-global-primary); color:#fff; font-size:13px; font-weight:500; font-family:inherit; cursor:pointer; display:flex; align-items:center; gap:6px; flex-shrink:0;"><span style="width:14px; height:14px; flex-shrink:0; background:#fff; -webkit-mask:url(icons/Chat.svg) center/contain no-repeat; mask:url(icons/Chat.svg) center/contain no-repeat;"></span>Open chat with Sarah Chen</button></div>
+            </div>
+            <div style="border:1px solid var(--border-subtle-neutral); border-radius:14px; overflow:hidden;">
+              <div style="padding:10px 14px; border-bottom:1px solid var(--border-subtle-neutral); display:flex; align-items:center; gap:8px;">
+                <span style="width:14px; height:14px; flex-shrink:0; background:var(--icon-neutral); -webkit-mask:url(icons/Chat.svg) center/contain no-repeat; mask:url(icons/Chat.svg) center/contain no-repeat;"></span>
+                <span style="font-size:12px; color:var(--text-neutral);">Message 2 of 2 · to Marcus Webb</span>
+              </div>
+              <div style="padding:14px; display:flex; flex-direction:column; gap:10px;"><div style="font-size:14px; line-height:20px; color:var(--text-stronger-neutral);">Marcus — partner API scoping review is on Aug 14. Can you have the endpoint list ready the day before?</div></div>
+              <div style="padding:10px 14px; border-top:1px solid var(--border-subtle-neutral); display:flex; align-items:center; gap:8px; flex-wrap:wrap;"><button onClick="{{ openChat }}" style="height:34px; padding:0 14px; border-radius:999px; border:none; background:var(--fill-global-primary); color:#fff; font-size:13px; font-weight:500; font-family:inherit; cursor:pointer; display:flex; align-items:center; gap:6px; flex-shrink:0;"><span style="width:14px; height:14px; flex-shrink:0; background:#fff; -webkit-mask:url(icons/Chat.svg) center/contain no-repeat; mask:url(icons/Chat.svg) center/contain no-repeat;"></span>Open chat with Marcus Webb</button></div>
+            </div>
+        </div>
+        </div>
+
+        <div style="background:var(--background-bg-default); border-radius:16px; flex-shrink:0; box-shadow:var(--drop-shadow-sm); overflow:hidden;">
+          <div style="padding:12px 24px; display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--border-subtle-neutral);">
+            <span style="font-size:12px; color:var(--text-neutral);">Zoom &lt;notifications@zoom.us&gt;</span>
+            <span style="font-size:12px; color:var(--text-neutral);">3:04 PM</span>
+          </div>
+          <div style="padding:24px; display:flex; flex-direction:column; gap:16px;">
+            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+              <span style="font-size:17px; font-weight:600; line-height:22px; color:var(--text-stronger-neutral);">Your recap email to the Design team is ready</span>
+              <span style="font-size:11px; font-weight:500; padding:3px 9px; border-radius:999px; background:var(--fill-subtler-success); color:var(--text-success); flex-shrink:0;">Completed</span>
+            </div>
+            <div style="font-size:13px; line-height:18px; color:var(--text-neutral); margin-top:-8px;">Product Roadmap Sync · Jul 28, 2026 · Hosted by Sarah Chen</div>
+            <div style="font-size:14px; line-height:21px; color:var(--text-strong-neutral);">Recipients, subject, and body are pre-filled. Nothing was sent — open it in Mail to edit and send.</div>
+            <div style="border:1px solid var(--border-subtle-neutral); border-radius:14px; padding:14px 16px; display:flex; align-items:center; gap:12px;">
+              <span style="width:36px; height:36px; border-radius:999px; background:var(--fill-subtle-neutral); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><img src="icons/GoogleGmail.svg" width="18" height="18" alt=""/></span>
+              <span style="flex:1; min-width:0;">
+                <span style="display:block; font-size:15px; font-weight:500; line-height:20px; color:var(--text-stronger-neutral);">Send a recap email to the Design team</span>
+                <span style="display:block; font-size:13px; line-height:18px; color:var(--text-neutral);">Product Roadmap Sync</span>
+              </span>
+              <button onClick="{{ openResult }}" style="height:34px; padding:0 14px; border-radius:999px; border:none; background:var(--fill-subtle-neutral); color:var(--text-stronger-neutral); font-size:13px; font-weight:500; font-family:inherit; cursor:pointer; flex-shrink:0;">View result</button>
+            </div>
+            <div style="border:1px solid var(--border-subtle-neutral); border-radius:14px; overflow:hidden;">
+              <div style="padding:10px 14px; border-bottom:1px solid var(--border-subtle-neutral); display:flex; align-items:center; gap:8px;">
+                <span style="width:14px; height:14px; flex-shrink:0; background:var(--icon-neutral); -webkit-mask:url(icons/Email.svg) center/contain no-repeat; mask:url(icons/Email.svg) center/contain no-repeat;"></span>
+                <span style="font-size:12px; color:var(--text-neutral);">Email · draft, not sent</span>
+              </div>
+              <div style="padding:14px; display:flex; flex-direction:column; gap:10px;"><div style="display:flex; flex-direction:column; gap:6px; padding-bottom:10px; border-bottom:1px solid var(--border-subtle-neutral);">
+                  <div style="display:flex; gap:10px;"><span style="width:52px; flex-shrink:0; font-size:12px; color:var(--text-neutral);">To</span><span style="font-size:13px; line-height:18px; color:var(--text-stronger-neutral);">design-team@acme.com</span></div>
+                  <div style="display:flex; gap:10px;"><span style="width:52px; flex-shrink:0; font-size:12px; color:var(--text-neutral);">Cc</span><span style="font-size:13px; line-height:18px; color:var(--text-stronger-neutral);">sarah.chen@acme.com, marcus.webb@acme.com</span></div>
+                  <div style="display:flex; gap:10px;"><span style="width:52px; flex-shrink:0; font-size:12px; color:var(--text-neutral);">Subject</span><span style="font-size:13px; line-height:18px; font-weight:500; color:var(--text-stronger-neutral);">Roadmap sync recap — three Q3 bets and owners</span></div>
+                </div><div style="font-size:14px; line-height:20px; color:var(--text-stronger-neutral);">Hi all — here’s where we landed today.</div><div style="font-size:14px; line-height:20px; color:var(--text-stronger-neutral);"><strong>Pricing revamp</strong> — Sarah Chen, draft model Aug 8<br/><strong>Onboarding rebuild</strong> — Priya Raman, kickoff Aug 11<br/><strong>Partner API</strong> — Marcus Webb, scoping review Aug 14</div><div style="font-size:14px; line-height:20px; color:var(--text-stronger-neutral);">Everything else is parked until Q4 planning.</div></div>
+              <div style="padding:10px 14px; border-top:1px solid var(--border-subtle-neutral); display:flex; align-items:center; gap:8px; flex-wrap:wrap;"><button onClick="{{ openEmail }}" style="height:34px; padding:0 14px; border-radius:999px; border:none; background:var(--fill-global-primary); color:#fff; font-size:13px; font-weight:500; font-family:inherit; cursor:pointer; display:flex; align-items:center; gap:6px; flex-shrink:0;"><span style="width:14px; height:14px; flex-shrink:0; background:#fff; -webkit-mask:url(icons/Email.svg) center/contain no-repeat; mask:url(icons/Email.svg) center/contain no-repeat;"></span>Open in Mail</button></div>
+            </div>
+        </div>
+        </div>
+
+        <div style="background:var(--background-bg-default); border-radius:16px; flex-shrink:0; box-shadow:var(--drop-shadow-sm); overflow:hidden;">
+          <div style="padding:12px 24px; display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--border-subtle-neutral);">
+            <span style="font-size:12px; color:var(--text-neutral);">Zoom &lt;notifications@zoom.us&gt;</span>
+            <span style="font-size:12px; color:var(--text-neutral);">3:06 PM</span>
+          </div>
+          <div style="padding:24px; display:flex; flex-direction:column; gap:16px;">
+            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+              <span style="font-size:17px; font-weight:600; line-height:22px; color:var(--text-stronger-neutral);">Your meeting summary doc is ready</span>
+              <span style="font-size:11px; font-weight:500; padding:3px 9px; border-radius:999px; background:var(--fill-subtler-success); color:var(--text-success); flex-shrink:0;">Completed</span>
+            </div>
+            <div style="font-size:13px; line-height:18px; color:var(--text-neutral); margin-top:-8px;">Product Roadmap Sync · Jul 28, 2026 · Hosted by Sarah Chen</div>
+            <div style="font-size:14px; line-height:21px; color:var(--text-strong-neutral);">Q3 roadmap locked around three bets: pricing revamp, onboarding rebuild, partner API. Sarah Chen owns pricing; the partner API needs a scoping review before any commitment.</div>
+            <div style="border:1px solid var(--border-subtle-neutral); border-radius:14px; overflow:hidden;">
+              <div style="padding:14px; display:flex; align-items:center; gap:10px;"><span style="width:16px; height:16px; flex-shrink:0; background:var(--icon-primary); -webkit-mask:url(icons/ZoomDocs.svg) center/contain no-repeat; mask:url(icons/ZoomDocs.svg) center/contain no-repeat;"></span><span style="font-size:14px; font-weight:500; color:var(--text-stronger-neutral);">Product Roadmap Sync — summary</span></div>
+              <div style="padding:10px 14px; border-top:1px solid var(--border-subtle-neutral); display:flex; align-items:center; gap:8px; flex-wrap:wrap;"><button onClick="{{ openDoc }}" style="height:34px; padding:0 14px; border-radius:999px; border:none; background:var(--fill-global-primary); color:#fff; font-size:13px; font-weight:500; font-family:inherit; cursor:pointer; display:flex; align-items:center; gap:6px; flex-shrink:0;"><span style="width:14px; height:14px; flex-shrink:0; background:#fff; -webkit-mask:url(icons/ZoomDocs.svg) center/contain no-repeat; mask:url(icons/ZoomDocs.svg) center/contain no-repeat;"></span>Open Docs</button></div>
+            </div>
+        </div>
+        </div>
+
+        <!-- COMPLETED: two different artifact types from one task (doc + sheet) -->
+        <div style="background:var(--background-bg-default); border-radius:16px; flex-shrink:0; box-shadow:var(--drop-shadow-sm); overflow:hidden;">
+          <div style="padding:12px 24px; display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--border-subtle-neutral);">
+            <span style="font-size:12px; color:var(--text-neutral);">Zoom &lt;notifications@zoom.us&gt;</span>
+            <span style="font-size:12px; color:var(--text-neutral);">3:08 PM</span>
+          </div>
+          <div style="padding:24px; display:flex; flex-direction:column; gap:16px;">
+            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+              <span style="font-size:17px; font-weight:600; line-height:22px; color:var(--text-stronger-neutral);">2 files are ready</span>
+              <span style="font-size:11px; font-weight:500; padding:3px 9px; border-radius:999px; background:var(--fill-subtler-success); color:var(--text-success); flex-shrink:0;">Completed</span>
+            </div>
+            <div style="font-size:13px; line-height:18px; color:var(--text-neutral); margin-top:-8px;">Product Roadmap Sync · Jul 28, 2026 · Hosted by Sarah Chen</div>
+            <div style="font-size:14px; line-height:21px; color:var(--text-strong-neutral);">The task produced two different files — a recap doc and a budget sheet. They're separate — open one at a time.</div>
+            <div style="border:1px solid var(--border-subtle-neutral); border-radius:14px; padding:14px 16px; display:flex; align-items:center; gap:12px;">
+              <span style="width:36px; height:36px; border-radius:999px; background:var(--fill-subtler-primary); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><span style="width:17px; height:17px; flex-shrink:0; background:var(--icon-primary); -webkit-mask:url(icons/Tasks.svg) center/contain no-repeat; mask:url(icons/Tasks.svg) center/contain no-repeat;"></span></span>
+              <span style="flex:1; min-width:0;">
+                <span style="display:block; font-size:15px; font-weight:500; line-height:20px; color:var(--text-stronger-neutral);">Draft the launch recap and budget breakdown</span>
+                <span style="display:block; font-size:13px; line-height:18px; color:var(--text-neutral);">Product Roadmap Sync</span>
+              </span>
+              <button onClick="{{ openResult }}" style="height:34px; padding:0 14px; border-radius:999px; border:none; background:var(--fill-subtle-neutral); color:var(--text-stronger-neutral); font-size:13px; font-weight:500; font-family:inherit; cursor:pointer; flex-shrink:0;">View result</button>
+            </div>
+            <div style="border:1px solid var(--border-subtle-neutral); border-radius:14px; overflow:hidden;">
+              <div style="padding:14px; display:flex; align-items:center; gap:10px;"><span style="width:16px; height:16px; flex-shrink:0; background:var(--icon-primary); -webkit-mask:url(icons/ZoomDocs.svg) center/contain no-repeat; mask:url(icons/ZoomDocs.svg) center/contain no-repeat;"></span><span style="font-size:14px; font-weight:500; color:var(--text-stronger-neutral);">Product Roadmap Sync — launch recap</span></div>
+              <div style="padding:10px 14px; border-top:1px solid var(--border-subtle-neutral); display:flex; align-items:center; gap:8px; flex-wrap:wrap;"><button onClick="{{ openDoc }}" style="height:34px; padding:0 14px; border-radius:999px; border:none; background:var(--fill-global-primary); color:#fff; font-size:13px; font-weight:500; font-family:inherit; cursor:pointer; display:flex; align-items:center; gap:6px; flex-shrink:0;"><span style="width:14px; height:14px; flex-shrink:0; background:#fff; -webkit-mask:url(icons/ZoomDocs.svg) center/contain no-repeat; mask:url(icons/ZoomDocs.svg) center/contain no-repeat;"></span>Open doc</button></div>
+            </div>
+            <div style="border:1px solid var(--border-subtle-neutral); border-radius:14px; overflow:hidden;">
+              <div style="padding:14px; display:flex; align-items:center; gap:10px;"><span style="width:16px; height:16px; flex-shrink:0; background:var(--icon-success); -webkit-mask:url(icons/File.svg) center/contain no-repeat; mask:url(icons/File.svg) center/contain no-repeat;"></span><span style="font-size:14px; font-weight:500; color:var(--text-stronger-neutral);">Q3 budget breakdown — sheet</span></div>
+              <div style="padding:10px 14px; border-top:1px solid var(--border-subtle-neutral); display:flex; align-items:center; gap:8px; flex-wrap:wrap;"><button onClick="{{ openSheet }}" style="height:34px; padding:0 14px; border-radius:999px; border:none; background:var(--fill-global-primary); color:#fff; font-size:13px; font-weight:500; font-family:inherit; cursor:pointer; display:flex; align-items:center; gap:6px; flex-shrink:0;"><span style="width:14px; height:14px; flex-shrink:0; background:#fff; -webkit-mask:url(icons/File.svg) center/contain no-repeat; mask:url(icons/File.svg) center/contain no-repeat;"></span>Open sheet</button></div>
+            </div>
+        </div>
+        </div>
+
+        <!-- FAILED -->
+        <div style="background:var(--background-bg-default); border-radius:16px; flex-shrink:0; box-shadow:var(--drop-shadow-sm); overflow:hidden;">
+          <div style="padding:12px 24px; display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--border-subtle-neutral);">
+            <span style="font-size:12px; color:var(--text-neutral);">Zoom &lt;notifications@zoom.us&gt;</span>
+            <span style="font-size:12px; color:var(--text-neutral);">3:05 PM</span>
+          </div>
+          <div style="padding:24px; display:flex; flex-direction:column; gap:16px;">
+            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+              <span style="font-size:17px; font-weight:600; line-height:22px; color:var(--text-stronger-neutral);">Send recap email couldn't finish</span>
+              <span style="font-size:11px; font-weight:500; padding:3px 9px; border-radius:999px; background:var(--fill-subtler-error); color:var(--text-error);">Failed</span>
+            </div>
+            <div style="font-size:13px; line-height:18px; color:var(--text-neutral); margin-top:-8px;">Product Roadmap Sync · Jul 28, 2026 · Hosted by Sarah Chen</div>
+            <div style="font-size:14px; line-height:21px; color:var(--text-strong-neutral);">The recipient address for the Design team couldn't be resolved, so nothing was sent.</div>
+            <div>
+              <button onClick="{{ openDetails }}" style="height:36px; padding:0 18px; border-radius:12px; border:none; background:var(--fill-global-primary); color:#fff; font-size:14px; font-weight:500; font-family:inherit; cursor:pointer;">View details</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- ================= WORKFLOW ================= -->
+    <sc-if value="{{ isWorkflow }}" hint-placeholder-val="{{ false }}">
+      <div style="max-width:720px; margin:0 auto; padding:36px 32px 96px; display:flex; flex-direction:column; gap:24px;">
+        <div>
+          <div style="font-size:20px; font-weight:600; line-height:26px; color:var(--text-stronger-neutral);">Workflow task emails</div>
+          <div style="font-size:14px; line-height:20px; color:var(--text-neutral); margin-top:4px;">Workflow subscribes to done and error only. Attaching is a process state and sends nothing. Review-needed notifications for a workflow run are sent by Workflow itself, not from here.</div>
+        </div>
+
+        <div style="background:var(--background-bg-default); border-radius:16px; flex-shrink:0; box-shadow:var(--drop-shadow-sm); overflow:hidden;">
+          <div style="padding:12px 24px; display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--border-subtle-neutral);">
+            <span style="font-size:12px; color:var(--text-neutral);">Zoom &lt;notifications@zoom.us&gt;</span>
+            <span style="font-size:12px; color:var(--text-neutral);">3:20 PM</span>
+          </div>
+          <div style="padding:24px; display:flex; flex-direction:column; gap:16px;">
+            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+              <span style="font-size:17px; font-weight:600; line-height:22px; color:var(--text-stronger-neutral);">Sync meeting notes to Notion is done</span>
+              <span style="font-size:11px; font-weight:500; padding:3px 9px; border-radius:999px; background:var(--fill-subtler-success); color:var(--text-success);">Completed</span>
+            </div>
+            <div style="font-size:13px; line-height:18px; color:var(--text-neutral); margin-top:-8px;">Product Roadmap Sync · Jul 28, 2026 · Hosted by Sarah Chen</div>
+            <div style="border:1px solid var(--border-subtle-neutral); border-radius:14px; padding:14px 16px; display:flex; flex-direction:column; gap:10px;">
+              <div style="display:flex; align-items:center; gap:12px;">
+                <span style="width:36px; height:36px; border-radius:999px; background:var(--fill-subtler-success); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><span style="width:17px; height:17px; flex-shrink:0; background:var(--icon-success); -webkit-mask:url(icons/ZoomDocs.svg) center/contain no-repeat; mask:url(icons/ZoomDocs.svg) center/contain no-repeat;"></span></span>
+                <span style="flex:1; min-width:0; font-size:15px; font-weight:500; line-height:20px; color:var(--text-stronger-neutral);">Sync meeting notes to Notion</span>
+                <button onClick="{{ openResult }}" style="height:36px; padding:0 14px; border-radius:999px; border:none; background:var(--fill-subtle-neutral); color:var(--text-stronger-neutral); font-size:14px; font-weight:500; font-family:inherit; cursor:pointer; flex-shrink:0;">View result</button>
+              </div>
+              <div style="font-size:13px; line-height:19px; color:var(--text-strong-neutral); padding-left:48px;">Notes synced to the Notion workspace — 12 action items created. <span style="color:var(--text-neutral);">(payload.summary)</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:var(--background-bg-default); border-radius:16px; flex-shrink:0; box-shadow:var(--drop-shadow-sm); overflow:hidden;">
+          <div style="padding:12px 24px; display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--border-subtle-neutral);">
+            <span style="font-size:12px; color:var(--text-neutral);">Zoom &lt;notifications@zoom.us&gt;</span>
+            <span style="font-size:12px; color:var(--text-neutral);">3:27 PM</span>
+          </div>
+          <div style="padding:24px; display:flex; flex-direction:column; gap:16px;">
+            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+              <span style="font-size:17px; font-weight:600; line-height:22px; color:var(--text-stronger-neutral);">Create Jira tickets couldn't finish</span>
+              <span style="font-size:11px; font-weight:500; padding:3px 9px; border-radius:999px; background:var(--fill-subtler-error); color:var(--text-error);">Failed</span>
+            </div>
+            <div style="font-size:13px; line-height:18px; color:var(--text-neutral); margin-top:-8px;">Product Roadmap Sync · Jul 28, 2026 · Hosted by Sarah Chen</div>
+            <div style="font-size:14px; line-height:21px; color:var(--text-strong-neutral);">Jira project permissions error — issues can't be created in project ENG. <span style="color:var(--text-neutral);">(payload.errorReason)</span></div>
+            <div>
+              <button onClick="{{ openDetails }}" style="height:36px; padding:0 18px; border-radius:12px; border:none; background:var(--fill-global-primary); color:#fff; font-size:14px; font-weight:500; font-family:inherit; cursor:pointer;">View details</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- ================= CLIENT SETTINGS ================= -->
+    <sc-if value="{{ isClient }}" hint-placeholder-val="{{ false }}">
+      <div style="max-width:680px; margin:0 auto; padding:36px 32px 96px; display:flex; flex-direction:column; gap:20px;">
+        <div>
+          <div style="font-size:12px; color:var(--text-neutral);">My Notes &gt; Settings &gt; Notifications</div>
+          <div style="font-size:20px; font-weight:600; line-height:26px; color:var(--text-stronger-neutral); margin-top:6px;">Follow-up notifications</div>
+          <div style="font-size:14px; line-height:20px; color:var(--text-neutral); margin-top:4px;">Choose how you hear about follow-ups from your meetings — tasks pulled from what was said, tasks inferred from the discussion, and workflows suggested for the meeting. The list itself always stays in My Notes.</div>
+        </div>
+
+        <!-- EMAIL -->
+        <div style="background:var(--background-bg-default); border-radius:16px; flex-shrink:0; box-shadow:var(--drop-shadow-sm); opacity:{{ emailBlockOpacity }};">
+          <div onMouseEnter="{{ hoverEmailOn }}" onMouseLeave="{{ hoverOff }}" style="padding:16px 20px; display:flex; align-items:center; justify-content:space-between; gap:16px; position:relative;">
+            <div>
+              <div style="font-size:15px; font-weight:500; color:var(--text-stronger-neutral);">Email</div>
+              <div style="font-size:13px; line-height:18px; color:var(--text-neutral); margin-top:2px;">Sent about 10 minutes after a task appears, if you haven't opened it.</div>
+            </div>
+            <button onClick="{{ toggleEmail }}" style="{{ emailToggleStyle }}"><span style="{{ emailKnobStyle }}"></span></button>
+            <sc-if value="{{ showEmailTip }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute; right:20px; top:calc(100% - 6px); background:var(--text-stronger-neutral); color:#fff; font-size:12px; line-height:16px; padding:8px 10px; border-radius:8px; max-width:280px; box-shadow:var(--drop-shadow-md); z-index:5;">Follow-up emails are turned off for your account. Ask your admin to enable them in My Notes notification settings.</div>
+            </sc-if>
+          </div>
+
+          <div style="border-top:1px solid var(--border-subtle-neutral); padding:14px 20px 18px; opacity:{{ emailStatusOpacity }};">
+            <div style="font-size:13px; color:var(--text-neutral); margin-bottom:10px;">Email me about</div>
+            <div style="display:flex; flex-direction:column; gap:12px;">
+              <sc-for list="{{ statusRows }}" as="row" hint-placeholder-count="4">
+                <label style="display:flex; align-items:flex-start; gap:10px; cursor:{{ row.cursor }};">
+                  <span style="{{ row.boxStyle }}"><span style="{{ row.tickStyle }}"></span></span>
+                  <span>
+                    <span style="display:block; font-size:14px; line-height:19px; color:var(--text-stronger-neutral);">{{ row.label }}</span>
+                    <span style="display:block; font-size:12px; line-height:17px; color:var(--text-neutral);">{{ row.hint }}</span>
+                  </span>
+                  <input type="checkbox" checked="{{ row.checked }}" onChange="{{ row.onChange }}" disabled="{{ row.disabled }}" style="position:absolute; opacity:0; width:0; height:0;"/>
+                </label>
+              </sc-for>
+            </div>
+            </div>
+          </div>
+
+        <!-- IM CHANNELS -->
+        <div style="background:var(--background-bg-default); border-radius:16px; flex-shrink:0; box-shadow:var(--drop-shadow-sm);">
+          <div style="padding:14px 20px; border-bottom:1px solid var(--border-subtle-neutral); display:flex; align-items:center; justify-content:space-between; gap:16px;">
+            <div>
+              <div style="font-size:15px; font-weight:500; color:var(--text-stronger-neutral);">Chat apps</div>
+              <div style="font-size:13px; line-height:18px; color:var(--text-neutral); margin-top:2px;">Uses the same statuses you picked above. Slack and Teams are delivered by the Zoom bot, so they're switched on inside those apps.</div>
+            </div>
+            <button onClick="{{ toggleChatIntent }}" style="{{ chatIntentToggleStyle }}"><span style="{{ chatIntentKnobStyle }}"></span></button>
+          </div>
+          <sc-for list="{{ chatChannels }}" as="ch" hint-placeholder-count="3">
+            <div onMouseEnter="{{ ch.onEnter }}" onMouseLeave="{{ hoverOff }}" style="{{ ch.rowStyle }}">
+              <div>
+                <div style="font-size:14px; font-weight:500; color:var(--text-stronger-neutral);">{{ ch.name }}</div>
+                <div style="font-size:12px; line-height:17px; color:var(--text-neutral); margin-top:2px;">{{ ch.sub }}</div>
+              </div>
+              <sc-if value="{{ ch.showToggle }}" hint-placeholder-val="{{ true }}">
+                <button onClick="{{ ch.onToggle }}" style="{{ ch.toggleStyle }}"><span style="{{ ch.knobStyle }}"></span></button>
+              </sc-if>
+              <sc-if value="{{ ch.showState }}" hint-placeholder-val="{{ false }}">
+                <span style="display:flex; align-items:center; gap:12px; flex-shrink:0;">
+                  <span style="{{ ch.stateChipStyle }}">{{ ch.stateLabel }}</span>
+                  <a onClick="{{ ch.onManage }}" style="font-size:13px; font-weight:500; cursor:pointer; white-space:nowrap;">{{ ch.manageLabel }} ↗</a>
+                </span>
+              </sc-if>
+              <sc-if value="{{ ch.showTip }}" hint-placeholder-val="{{ false }}">
+                <div style="position:absolute; right:20px; top:calc(100% - 6px); background:var(--text-stronger-neutral); color:#fff; font-size:12px; line-height:16px; padding:8px 10px; border-radius:8px; max-width:280px; box-shadow:var(--drop-shadow-md); z-index:5;">{{ ch.tip }}</div>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="font-size:12px; line-height:18px; color:var(--text-neutral);">Client switches express your intent; the admin switch and the bot's install state express permission. Both must be true before anything is sent.</div>
+      </div>
+    </sc-if>
+
+    <!-- ================= ADMIN SETTINGS ================= -->
+    <sc-if value="{{ isAdmin }}" hint-placeholder-val="{{ false }}">
+      <div style="max-width:760px; margin:0 auto; padding:36px 32px 96px; display:flex; flex-direction:column; gap:20px;">
+        <div>
+          <div style="font-size:12px; color:var(--text-neutral);">Web Portal &gt; Account Settings &gt; My Notes &gt; Notification</div>
+          <div style="font-size:20px; font-weight:600; line-height:26px; color:var(--text-stronger-neutral); margin-top:6px;">Where the account switches live</div>
+          <div style="font-size:14px; line-height:20px; color:var(--text-neutral); margin-top:4px;">Recommendation: reuse the existing <strong>Notification</strong> section of My Notes settings. No new switch — follow-ups become a checkbox under the email switch that is already there, next to the summary email, sharing the same lock affordance and account → group → user inheritance. Admins decide whether these emails are allowed at all; users decide which ones they want.</div>
+        </div>
+
+        <div style="background:var(--background-bg-default); border-radius:16px; flex-shrink:0; box-shadow:var(--drop-shadow-sm); overflow:hidden;">
+          <div style="background:var(--fill-subtle-neutral); padding:10px 20px; font-size:13px; font-weight:600; color:var(--text-stronger-neutral);">Notification</div>
+
+          <div style="padding:16px 20px; border-bottom:1px solid var(--border-subtle-neutral); display:flex; align-items:flex-start; justify-content:space-between; gap:16px; opacity:0.55;">
+            <div>
+              <div style="font-size:14px; font-weight:500; color:var(--text-stronger-neutral);">Enable desktop notifications for My Notes</div>
+              <div style="font-size:12px; line-height:17px; color:var(--text-neutral); margin-top:2px;">Existing setting — comments, mentions, permission requests.</div>
+            </div>
+            <span style="font-size:12px; color:var(--text-neutral); flex-shrink:0; padding-top:2px;">unchanged</span>
+          </div>
+
+          <div style="padding:16px 20px; border-bottom:1px solid var(--border-subtle-neutral); display:flex; flex-direction:column; gap:14px;">
+            <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:16px;">
+              <div>
+                <div style="font-size:14px; font-weight:500; color:var(--text-stronger-neutral);">Enable email notifications for My Notes</div>
+                <div style="font-size:12px; line-height:17px; color:var(--text-neutral); margin-top:3px; max-width:520px;">Existing setting, extended. Comments, mentions, and permission requests are unchanged; the two checkboxes below decide which of the new My Notes emails this account allows.</div>
+              </div>
+              <div style="display:flex; align-items:center; gap:10px; flex-shrink:0; padding-top:2px;">
+                <button onClick="{{ toggleAdminEmail }}" style="{{ adminEmailToggleStyle }}"><span style="{{ adminEmailKnobStyle }}"></span></button>
+                <span style="width:15px; height:15px; flex-shrink:0; background:var(--icon-neutral); -webkit-mask:url(icons/LockLocked.svg) center/contain no-repeat; mask:url(icons/LockLocked.svg) center/contain no-repeat;"></span>
+              </div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:12px; padding-left:2px; opacity:{{ adminEmailChildOpacity }};">
+              <sc-for list="{{ adminEmailKinds }}" as="k" hint-placeholder-count="2">
+                <label style="display:flex; align-items:flex-start; gap:10px; cursor:{{ k.cursor }};">
+                  <span style="{{ k.boxStyle }}"><span style="{{ k.tickStyle }}"></span></span>
+                  <span>
+                    <span style="display:flex; align-items:center; gap:8px;">
+                      <span style="font-size:13px; font-weight:500; color:var(--text-stronger-neutral);">{{ k.label }}</span>
+                      <span style="{{ k.badgeStyle }}">{{ k.badge }}</span>
+                    </span>
+                    <span style="display:block; font-size:12px; line-height:17px; color:var(--text-neutral); margin-top:2px; max-width:500px;">{{ k.note }}</span>
+                  </span>
+                  <input type="checkbox" checked="{{ k.checked }}" onChange="{{ k.onChange }}" disabled="{{ k.disabled }}" style="position:absolute; opacity:0; width:0; height:0;"/>
+                </label>
+              </sc-for>
+            </div>
+          </div>
+
+          <div style="padding:16px 20px; display:flex; flex-direction:column; gap:12px;">
+            <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:16px;">
+              <div>
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <span style="font-size:14px; font-weight:500; color:var(--text-stronger-neutral);">Enable IM notifications for My Notes</span>
+                  <span style="font-size:10px; font-weight:600; padding:2px 7px; border-radius:999px; background:var(--fill-subtle-neutral); color:var(--text-strong-neutral);">P1</span>
+                </div>
+                <div style="font-size:12px; line-height:17px; color:var(--text-neutral); margin-top:3px; max-width:520px;">The parent category for every chat channel. Turning it off stops all three at once. For Slack and Teams this switch only expresses whether your account wants follow-up cards sent — the Zoom bot still checks its own install and authorization state before delivering.</div>
+              </div>
+              <div style="display:flex; align-items:center; gap:10px; flex-shrink:0; padding-top:2px;">
+                <button onClick="{{ toggleAdminIm }}" style="{{ adminImToggleStyle }}"><span style="{{ adminImKnobStyle }}"></span></button>
+                <span style="width:15px; height:15px; flex-shrink:0; background:var(--icon-neutral); -webkit-mask:url(icons/LockLocked.svg) center/contain no-repeat; mask:url(icons/LockLocked.svg) center/contain no-repeat;"></span>
+              </div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:10px; padding-left:2px; opacity:{{ adminImChildOpacity }};">
+              <sc-for list="{{ adminImChannels }}" as="c" hint-placeholder-count="3">
+                <label style="display:flex; align-items:center; gap:10px; cursor:{{ c.cursor }};">
+                  <span style="{{ c.boxStyle }}"><span style="{{ c.tickStyle }}"></span></span>
+                  <span style="font-size:13px; color:var(--text-stronger-neutral);">{{ c.label }}</span>
+                  <span style="font-size:12px; color:var(--text-neutral);">{{ c.note }}</span>
+                  <input type="checkbox" checked="{{ c.checked }}" onChange="{{ c.onChange }}" disabled="{{ c.disabled }}" style="position:absolute; opacity:0; width:0; height:0;"/>
+                </label>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:var(--background-bg-default); border-radius:16px; flex-shrink:0; box-shadow:var(--drop-shadow-sm); padding:18px 20px; display:flex; flex-direction:column; gap:10px;">
+          <div style="font-size:14px; font-weight:500; color:var(--text-stronger-neutral);">Why here, and how it resolves</div>
+          <div style="font-size:13px; line-height:19px; color:var(--text-strong-neutral);">Admins already look for anything notification-shaped in this one section, and the checkboxes inherit the account → group → user lock model for free. Summary and follow-ups are separate checkboxes because accounts routinely want one without the other, but neither needs its own switch — they are both My Notes email.</div>
+          <div style="font-size:13px; line-height:19px; color:var(--text-strong-neutral);">Send only when the admin checkbox for that kind is on <strong>and</strong> the user’s client switch is on <strong>and</strong> (for chat apps) the bot is installed and authorized. Admin off leaves the client controls visible but grayed with a hover explanation, so users understand it’s a policy, not a bug. Which statuses a user receives is theirs alone — the account does not narrow that list.</div>
+          <div style="font-size:14px; font-weight:500; color:var(--text-stronger-neutral); margin-top:6px;">Slack and Teams: who owns the switch</div>
+          <div style="font-size:13px; line-height:19px; color:var(--text-strong-neutral);">We own <strong>intent</strong> — whether follow-up cards should go to chat at all, and which statuses. Ecosystem owns <strong>permission and delivery</strong>: the org-level enable lives in the Zoom app's config page in Zoom Marketplace, each user authorizes once inside Slack or Teams using that client's own sign-in, and the bot service consumes our full-volume events and drops anything from an unauthorized user.</div>
+          <div style="font-size:13px; line-height:19px; color:var(--text-strong-neutral);">So My Notes must not show a Slack or Teams on/off switch — a switch we can't enforce would lie. Those rows show connection state plus a link into the app, and a user with no Slack account simply has no choice to make. Zoom Team Chat keeps a real switch because that bot is ours.</div>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- ================= HITL MAPPING ================= -->
+    <sc-if value="{{ isHitl }}" hint-placeholder-val="{{ false }}">
+      <div style="max-width:720px; margin:0 auto; padding:36px 32px 96px; display:flex; flex-direction:column; gap:24px;">
+        <div>
+          <div style="font-size:20px; font-weight:600; line-height:26px; color:var(--text-stronger-neutral);">HITL mapping</div>
+          <div style="font-size:14px; line-height:20px; color:var(--text-neutral); margin-top:4px;">Every JSON shape ZoomMate's human-in-the-loop tool can currently hand back, and the fixed email layout each one maps to. Reference for handoff — the <code>part_id</code> under each card is the source example it covers.</div>
+        </div>
+
+        <div style="background:var(--background-bg-default); border-radius:16px; flex-shrink:0; box-shadow:var(--drop-shadow-sm); padding:18px 20px; display:flex; flex-direction:column; gap:14px;">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span style="width:15px; height:15px; flex-shrink:0; background:var(--icon-neutral); -webkit-mask:url(icons/LockLocked.svg) center/contain no-repeat; mask:url(icons/LockLocked.svg) center/contain no-repeat;"></span>
+            <span style="font-size:14px; font-weight:500; color:var(--text-stronger-neutral);">The mapping rule</span>
+          </div>
+          <div style="font-size:13px; line-height:19px; color:var(--text-strong-neutral);">Never parse or re-render <code>spec.fields</code> / <code>spec.actions</code> — that couples the email to a protocol we don't own. Take four stable pieces instead: <strong>spec.title</strong> → subject, <strong>spec.subtitle</strong> (or the first <strong>display</strong> field's text, if there's no subtitle, or nothing at all if neither exists) → body copy, a <strong>table</strong> or <strong>file_to_confirm</strong> field → a one-line count or filename mention (never the table or file picker itself), and one <strong>Review and continue</strong> button that deep-links into Zoom.</div>
+          <div style="font-size:13px; line-height:19px; color:var(--text-strong-neutral);">Three exceptions. An action of <strong>type: "link"</strong> is a plain URL — safe to expose as its own button, it behaves identically in email or in-app. A <strong>title</strong> or <strong>subtitle</strong> longer than a sentence gets truncated with an ellipsis — the spec has no length contract, our subject line does. And several specs sharing one <strong>meta.batch_id</strong> collapse into a single "N items need your review" card instead of N separate emails.</div>
+        </div>
+
+        <div style="font-size:13px; line-height:18px; color:var(--text-neutral); margin:6px 0 0 2px;">Plain text sources</div>
+
+        <div style="background:var(--background-bg-default); border-radius:16px; flex-shrink:0; box-shadow:var(--drop-shadow-sm); overflow:hidden;">
+          <div style="padding:12px 24px; display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--border-subtle-neutral);">
+            <span style="font-size:12px; color:var(--text-neutral);">Zoom &lt;notifications@zoom.us&gt;</span>
+            <span style="font-size:12px; color:var(--text-neutral);">demo-simple-confirm</span>
+          </div>
+          <div style="padding:24px; display:flex; flex-direction:column; gap:16px;">
+            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+              <span style="font-size:17px; font-weight:600; line-height:22px; color:var(--text-stronger-neutral);">Confirm model</span>
+              <span style="font-size:11px; font-weight:500; padding:3px 9px; border-radius:999px; background:var(--fill-subtler-warning); color:var(--text-warning);">Action required</span>
+            </div>
+            <div style="font-size:13px; line-height:18px; color:var(--text-neutral); margin-top:-8px;">Product Roadmap Sync · Jul 28, 2026 · Hosted by Sarah Chen</div>
+            <div style="font-size:14px; line-height:21px; color:var(--text-strong-neutral);">Clearly explain what the user needs to confirm.</div>
+            <div><button onClick="{{ openReview }}" style="height:36px; padding:0 18px; border-radius:12px; border:none; background:var(--fill-global-primary); color:#fff; font-size:14px; font-weight:500; font-family:inherit; cursor:pointer;">Review and continue</button></div>
+          </div>
+        </div>
+
+        <div style="background:var(--background-bg-default); border-radius:16px; flex-shrink:0; box-shadow:var(--drop-shadow-sm); overflow:hidden;">
+          <div style="padding:12px 24px; display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--border-subtle-neutral);">
+            <span style="font-size:12px; color:var(--text-neutral);">Zoom &lt;notifications@zoom.us&gt;</span>
+            <span style="font-size:12px; color:var(--text-neutral);">demo-quick-reply</span>
+          </div>
+          <div style="padding:24px; display:flex; flex-direction:column; gap:16px;">
+            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+              <span style="font-size:17px; font-weight:600; line-height:22px; color:var(--text-stronger-neutral);">How would you like me to proceed?</span>
+              <span style="font-size:11px; font-weight:500; padding:3px 9px; border-radius:999px; background:var(--fill-subtler-warning); color:var(--text-warning);">Action required</span>
+            </div>
+            <div style="font-size:13px; line-height:18px; color:var(--text-neutral); margin-top:-8px;">Product Roadmap Sync · Jul 28, 2026 · Hosted by Sarah Chen</div>
+            <div style="font-size:14px; line-height:21px; color:var(--text-strong-neutral);">ZoomMate needs a quick decision before it continues.</div>
+            <div><button onClick="{{ openReview }}" style="height:36px; padding:0 18px; border-radius:12px; border:none; background:var(--fill-global-primary); color:#fff; font-size:14px; font-weight:500; font-family:inherit; cursor:pointer;">Review and continue</button></div>
+          </div>
+        </div>
+
+        <div style="background:var(--background-bg-default); border-radius:16px; flex-shrink:0; box-shadow:var(--drop-shadow-sm); overflow:hidden;">
+          <div style="padding:12px 24px; display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--border-subtle-neutral);">
+            <span style="font-size:12px; color:var(--text-neutral);">Zoom &lt;notifications@zoom.us&gt;</span>
+            <span style="font-size:12px; color:var(--text-neutral);">demo-schedule-meeting</span>
+          </div>
+          <div style="padding:24px; display:flex; flex-direction:column; gap:16px;">
+            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+              <span style="font-size:17px; font-weight:600; line-height:22px; color:var(--text-stronger-neutral);">Schedule a follow-up?</span>
+              <span style="font-size:11px; font-weight:500; padding:3px 9px; border-radius:999px; background:var(--fill-subtler-warning); color:var(--text-warning);">Action required</span>
+            </div>
+            <div style="font-size:13px; line-height:18px; color:var(--text-neutral); margin-top:-8px;">Product Roadmap Sync · Jul 28, 2026 · Hosted by Sarah Chen</div>
+            <div style="font-size:14px; line-height:21px; color:var(--text-strong-neutral);">I can put a 30 min sync on your calendar for Friday 3:00 PM with the meeting notes attached.</div>
+            <div><button onClick="{{ openReview }}" style="height:36px; padding:0 18px; border-radius:12px; border:none; background:var(--fill-global-primary); color:#fff; font-size:14px; font-weight:500; font-family:inherit; cursor:pointer;">Review and continue</button></div>
+          </div>
+        </div>
+
+        <div style="background:var(--background-bg-default); border-radius:16px; flex-shrink:0; box-shadow:var(--drop-shadow-sm); overflow:hidden;">
+          <div style="padding:12px 24px; display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--border-subtle-neutral);">
+            <span style="font-size:12px; color:var(--text-neutral);">Zoom &lt;notifications@zoom.us&gt;</span>
+            <span style="font-size:12px; color:var(--text-neutral);">demo-confirm-deletion</span>
+          </div>
+          <div style="padding:24px; display:flex; flex-direction:column; gap:16px;">
+            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+              <span style="font-size:17px; font-weight:600; line-height:22px; color:var(--text-stronger-neutral);">Confirm Deletion</span>
+              <span style="font-size:11px; font-weight:500; padding:3px 9px; border-radius:999px; background:var(--fill-subtler-warning); color:var(--text-warning);">Action required</span>
+            </div>
+            <div style="font-size:13px; line-height:18px; color:var(--text-neutral); margin-top:-8px;">Product Roadmap Sync · Jul 28, 2026 · Hosted by Sarah Chen</div>
+            <div style="font-size:14px; line-height:21px; color:var(--text-strong-neutral);">You are about to delete 3 files from the project. This action cannot be undone.</div>
+            <div><button onClick="{{ openReview }}" style="height:36px; padding:0 18px; border-radius:12px; border:none; background:var(--fill-global-primary); color:#fff; font-size:14px; font-weight:500; font-family:inherit; cursor:pointer;">Review and continue</button></div>
+          </div>
+        </div>
+
+        <div style="background:var(--background-bg-default); border-radius:16px; flex-shrink:0; box-shadow:var(--drop-shadow-sm); overflow:hidden;">
+          <div style="padding:12px 24px; display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--border-subtle-neutral);">
+            <span style="font-size:12px; color:var(--text-neutral);">Zoom &lt;notifications@zoom.us&gt;</span>
+            <span style="font-size:12px; color:var(--text-neutral);">demo-browser-take-over</span>
+          </div>
+          <div style="padding:24px; display:flex; flex-direction:column; gap:16px;">
+            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+              <span style="font-size:17px; font-weight:600; line-height:22px; color:var(--text-stronger-neutral);">Type search term</span>
+              <span style="font-size:11px; font-weight:500; padding:3px 9px; border-radius:999px; background:var(--fill-subtler-warning); color:var(--text-warning);">Action required</span>
+            </div>
+            <div style="font-size:13px; line-height:18px; color:var(--text-neutral); margin-top:-8px;">Product Roadmap Sync · Jul 28, 2026 · Hosted by Sarah Chen</div>
+            <div style="font-size:14px; line-height:21px; color:var(--text-strong-neutral);">Please click on the Google search box and type &ldquo;llm&rdquo;, then click Continue.</div>
+            <div><button onClick="{{ openReview }}" style="height:36px; padding:0 18px; border-radius:12px; border:none; background:var(--fill-global-primary); color:#fff; font-size:14px; font-weight:500; font-family:inherit; cursor:pointer;">Review and continue</button></div>          </div>
+        </div>
+
+        <div style="font-size:13px; line-height:18px; color:var(--text-neutral); margin:6px 0 0 2px;">Special field types</div>
+
+        <div style="background:var(--background-bg-default); border-radius:16px; flex-shrink:0; box-shadow:var(--drop-shadow-sm); overflow:hidden;">
+          <div style="padding:12px 24px; display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--border-subtle-neutral);">
+            <span style="font-size:12px; color:var(--text-neutral);">Zoom &lt;notifications@zoom.us&gt;</span>
+            <span style="font-size:12px; color:var(--text-neutral);">demo-file-to-confirm</span>
+          </div>
+          <div style="padding:24px; display:flex; flex-direction:column; gap:16px;">
+            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+              <span style="font-size:17px; font-weight:600; line-height:22px; color:var(--text-stronger-neutral);">Confirm</span>
+              <span style="font-size:11px; font-weight:500; padding:3px 9px; border-radius:999px; background:var(--fill-subtler-warning); color:var(--text-warning);">Action required</span>
+            </div>
+            <div style="font-size:13px; line-height:18px; color:var(--text-neutral); margin-top:-8px;">Product Roadmap Sync · Jul 28, 2026 · Hosted by Sarah Chen</div>
+            <div style="font-size:14px; line-height:21px; color:var(--text-strong-neutral);">已为你准备了一个 2 页 Demo PPT 的大纲：第 1 页为封面，第 2 页为 KPI 数据展示页。确认后我将开始生成 PPT。</div>
+            <div style="border:1px solid var(--border-subtle-neutral); border-radius:14px; padding:12px 16px; display:flex; align-items:center; gap:10px;">
+              <span style="width:15px; height:15px; flex-shrink:0; background:var(--icon-neutral); -webkit-mask:url(icons/File.svg) center/contain no-repeat; mask:url(icons/File.svg) center/contain no-repeat;"></span>
+              <span style="font-size:13px; color:var(--text-strong-neutral);">outline.md</span>
+            </div>
+            <div><button onClick="{{ openReview }}" style="height:36px; padding:0 18px; border-radius:12px; border:none; background:var(--fill-global-primary); color:#fff; font-size:14px; font-weight:500; font-family:inherit; cursor:pointer;">Review and continue</button></div>
+          </div>
+        </div>
+
+        <div style="background:var(--background-bg-default); border-radius:16px; flex-shrink:0; box-shadow:var(--drop-shadow-sm); overflow:hidden;">
+          <div style="padding:12px 24px; display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--border-subtle-neutral);">
+            <span style="font-size:12px; color:var(--text-neutral);">Zoom &lt;notifications@zoom.us&gt;</span>
+            <span style="font-size:12px; color:var(--text-neutral);">demo-mixed-form</span>
+          </div>
+          <div style="padding:24px; display:flex; flex-direction:column; gap:16px;">
+            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+              <span style="font-size:17px; font-weight:600; line-height:22px; color:var(--text-stronger-neutral);">Deploy Configuration</span>
+              <span style="font-size:11px; font-weight:500; padding:3px 9px; border-radius:999px; background:var(--fill-subtler-warning); color:var(--text-warning);">Action required</span>
+            </div>
+            <div style="font-size:13px; line-height:18px; color:var(--text-neutral); margin-top:-8px;">Product Roadmap Sync · Jul 28, 2026 · Hosted by Sarah Chen</div>
+            <div style="font-size:14px; line-height:21px; color:var(--text-strong-neutral);">Configure the deployment settings below. The application will be deployed to the selected environment.</div>
+            <div><button onClick="{{ openReview }}" style="height:36px; padding:0 18px; border-radius:12px; border:none; background:var(--fill-global-primary); color:#fff; font-size:14px; font-weight:500; font-family:inherit; cursor:pointer;">Review and continue</button></div>          </div>
+        </div>
+
+        <div style="background:var(--background-bg-default); border-radius:16px; flex-shrink:0; box-shadow:var(--drop-shadow-sm); overflow:hidden;">
+          <div style="padding:12px 24px; display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--border-subtle-neutral);">
+            <span style="font-size:12px; color:var(--text-neutral);">Zoom &lt;notifications@zoom.us&gt;</span>
+            <span style="font-size:12px; color:var(--text-neutral);">demo-confirm-table-basic &middot; demo-confirm-table-multi-source</span>
+          </div>
+          <div style="padding:24px; display:flex; flex-direction:column; gap:16px;">
+            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+              <span style="font-size:17px; font-weight:600; line-height:22px; color:var(--text-stronger-neutral);">Action items</span>
+              <span style="font-size:11px; font-weight:500; padding:3px 9px; border-radius:999px; background:var(--fill-subtler-warning); color:var(--text-warning);">Action required</span>
+            </div>
+            <div style="font-size:13px; line-height:18px; color:var(--text-neutral); margin-top:-8px;">Product Roadmap Sync · Jul 28, 2026 · Hosted by Sarah Chen</div>
+            <div style="font-size:14px; line-height:21px; color:var(--text-strong-neutral);">Review, edit, or remove items before running. You can also add your own.</div>
+            <div style="border:1px solid var(--border-subtle-neutral); border-radius:14px; padding:12px 16px; display:flex; align-items:center; gap:10px;">
+              <span style="width:15px; height:15px; flex-shrink:0; background:var(--icon-neutral); -webkit-mask:url(icons/Tasks.svg) center/contain no-repeat; mask:url(icons/Tasks.svg) center/contain no-repeat;"></span>
+              <span style="font-size:13px; color:var(--text-strong-neutral);">3 action items ready for review</span>
+            </div>
+            <div><button onClick="{{ openReview }}" style="height:36px; padding:0 18px; border-radius:12px; border:none; background:var(--fill-global-primary); color:#fff; font-size:14px; font-weight:500; font-family:inherit; cursor:pointer;">Review and continue</button></div>          </div>
+        </div>
+
+        <div style="font-size:13px; line-height:18px; color:var(--text-neutral); margin:6px 0 0 2px;">Edge cases</div>
+
+        <div style="background:var(--background-bg-default); border-radius:16px; flex-shrink:0; box-shadow:var(--drop-shadow-sm); overflow:hidden;">
+          <div style="padding:12px 24px; display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--border-subtle-neutral);">
+            <span style="font-size:12px; color:var(--text-neutral);">Zoom &lt;notifications@zoom.us&gt;</span>
+            <span style="font-size:12px; color:var(--text-neutral);">demo-long-text</span>
+          </div>
+          <div style="padding:24px; display:flex; flex-direction:column; gap:16px;">
+            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+              <span style="font-size:17px; font-weight:600; line-height:22px; color:var(--text-stronger-neutral);">Create the website using realistic sample data&hellip;</span>
+              <span style="font-size:11px; font-weight:500; padding:3px 9px; border-radius:999px; background:var(--fill-subtler-warning); color:var(--text-warning);">Action required</span>
+            </div>
+            <div style="font-size:13px; line-height:18px; color:var(--text-neutral); margin-top:-8px;">Product Roadmap Sync · Jul 28, 2026 · Hosted by Sarah Chen</div>
+            <div style="font-size:14px; line-height:21px; color:var(--text-strong-neutral);">I searched your Zoom meetings but found none related to a payment processor migration. How would you like to proceed&hellip;</div>
+            <div><button onClick="{{ openReview }}" style="height:36px; padding:0 18px; border-radius:12px; border:none; background:var(--fill-global-primary); color:#fff; font-size:14px; font-weight:500; font-family:inherit; cursor:pointer;">Review and continue</button></div>          </div>
+        </div>
+
+        <div style="background:var(--background-bg-default); border-radius:16px; flex-shrink:0; box-shadow:var(--drop-shadow-sm); overflow:hidden;">
+          <div style="padding:12px 24px; display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--border-subtle-neutral);">
+            <span style="font-size:12px; color:var(--text-neutral);">Zoom &lt;notifications@zoom.us&gt;</span>
+            <span style="font-size:12px; color:var(--text-neutral);">demo-connector-write-auth</span>
+          </div>
+          <div style="padding:24px; display:flex; flex-direction:column; gap:16px;">
+            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+              <span style="font-size:17px; font-weight:600; line-height:22px; color:var(--text-stronger-neutral);">Allow ZoomMate to send message in Zoom Chats?</span>
+              <span style="font-size:11px; font-weight:500; padding:3px 9px; border-radius:999px; background:var(--fill-subtler-warning); color:var(--text-warning);">Action required</span>
+            </div>
+            <div style="font-size:13px; line-height:18px; color:var(--text-neutral); margin-top:-8px;">Product Roadmap Sync · Jul 28, 2026 · Hosted by Sarah Chen</div>
+            <div style="font-size:14px; line-height:21px; color:var(--text-strong-neutral);">This is a placeholder text to describe this permission request.</div>
+            <div><button onClick="{{ openReview }}" style="height:36px; padding:0 18px; border-radius:12px; border:none; background:var(--fill-global-primary); color:#fff; font-size:14px; font-weight:500; font-family:inherit; cursor:pointer;">Review and continue</button></div>          </div>
+        </div>
+
+        <div style="background:var(--background-bg-default); border-radius:16px; flex-shrink:0; box-shadow:var(--drop-shadow-sm); overflow:hidden;">
+          <div style="padding:12px 24px; display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--border-subtle-neutral);">
+            <span style="font-size:12px; color:var(--text-neutral);">Zoom &lt;notifications@zoom.us&gt;</span>
+            <span style="font-size:12px; color:var(--text-neutral);">demo-batch-command · demo-batch-file-write · demo-batch-connector-write</span>
+          </div>
+          <div style="padding:24px; display:flex; flex-direction:column; gap:16px;">
+            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+              <span style="font-size:17px; font-weight:600; line-height:22px; color:var(--text-stronger-neutral);">3 permissions need your review</span>
+              <span style="font-size:11px; font-weight:500; padding:3px 9px; border-radius:999px; background:var(--fill-subtler-warning); color:var(--text-warning);">Action required</span>
+            </div>
+            <div style="font-size:13px; line-height:18px; color:var(--text-neutral); margin-top:-8px;">Product Roadmap Sync · Jul 28, 2026 · Hosted by Sarah Chen</div>
+            <div style="font-size:14px; line-height:21px; color:var(--text-strong-neutral);">ZoomMate is waiting on 3 quick approvals before it can continue.</div>
+            <div style="display:flex; flex-direction:column; gap:8px;">
+              <div style="display:flex; align-items:center; gap:8px; padding:8px 0; border-top:1px solid var(--border-subtle-neutral);"><span style="width:5px; height:5px; border-radius:50%; flex-shrink:0; background:var(--icon-neutral);"></span><span style="font-size:13px; color:var(--text-strong-neutral);">Allow ZoomMate to send message in Zoom Chats?</span></div>
+              <div style="display:flex; align-items:center; gap:8px; padding:8px 0; border-top:1px solid var(--border-subtle-neutral);"><span style="width:5px; height:5px; border-radius:50%; flex-shrink:0; background:var(--icon-neutral);"></span><span style="font-size:13px; color:var(--text-strong-neutral);">Allow writing '/workspace/reports/q3-summary.md'?</span></div>
+              <div style="display:flex; align-items:center; gap:8px; padding:8px 0; border-top:1px solid var(--border-subtle-neutral);"><span style="width:5px; height:5px; border-radius:50%; flex-shrink:0; background:var(--icon-neutral);"></span><span style="font-size:13px; color:var(--text-strong-neutral);">Allow 'Jira' to perform write operation: JIRA_CREATE_ISSUE?</span></div>
+            </div>
+            <div><button onClick="{{ openReview }}" style="height:36px; padding:0 18px; border-radius:12px; border:none; background:var(--fill-global-primary); color:#fff; font-size:14px; font-weight:500; font-family:inherit; cursor:pointer;">Review and continue</button></div>          </div>
+        </div>
+
+        <div style="font-size:13px; line-height:18px; color:var(--text-neutral); margin:6px 0 0 2px;">A real link, surfaced as its own button</div>
+
+        <div style="background:var(--background-bg-default); border-radius:16px; flex-shrink:0; box-shadow:var(--drop-shadow-sm); overflow:hidden;">
+          <div style="padding:12px 24px; display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--border-subtle-neutral);">
+            <span style="font-size:12px; color:var(--text-neutral);">Zoom &lt;notifications@zoom.us&gt;</span>
+            <span style="font-size:12px; color:var(--text-neutral);">demo-auth-link-timeout</span>
+          </div>
+          <div style="padding:24px; display:flex; flex-direction:column; gap:16px;">
+            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+              <span style="font-size:17px; font-weight:600; line-height:22px; color:var(--text-stronger-neutral);">Authorization required</span>
+              <span style="font-size:11px; font-weight:500; padding:3px 9px; border-radius:999px; background:var(--fill-subtler-warning); color:var(--text-warning);">Action required</span>
+            </div>
+            <div style="font-size:13px; line-height:18px; color:var(--text-neutral); margin-top:-8px;">Product Roadmap Sync · Jul 28, 2026 · Hosted by Sarah Chen</div>
+            <div style="font-size:14px; line-height:21px; color:var(--text-strong-neutral);">Click Authorize to grant access to Google Drive, then continue the conversation.</div>
+            <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+              <button onClick="{{ openReview }}" style="height:36px; padding:0 18px; border-radius:12px; border:none; background:var(--fill-global-primary); color:#fff; font-size:14px; font-weight:500; font-family:inherit; cursor:pointer;">Review and continue</button>
+              <a href="#" style="display:flex; align-items:center; gap:4px; font-size:14px; font-weight:500; color:var(--text-primary); cursor:pointer;">Authorize<span style="width:14px; height:14px; flex-shrink:0; background:var(--text-primary); -webkit-mask:url(icons/ChevronRight.svg) center/contain no-repeat; mask:url(icons/ChevronRight.svg) center/contain no-repeat;"></span></a>
+            </div>          </div>
+        </div>
+
+      </div>
+    </sc-if>
+
+  </div>
+
+  <sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeModal }}" style="position:fixed; inset:0; background:rgba(0,0,0,0.42); display:flex; align-items:center; justify-content:center; z-index:100;">
+      <div onClick="{{ stopProp }}" style="background:var(--background-bg-default); border-radius:16px; width:460px; max-width:90vw; box-shadow:var(--drop-shadow-lg); overflow:hidden;">
+        <div style="padding:14px 20px; border-bottom:1px solid var(--border-subtle-neutral); display:flex; align-items:center; justify-content:space-between;">
+          <span style="font-size:12px; color:var(--text-neutral);">Zoom Workplace · Follow-ups</span>
+          <button onClick="{{ closeModal }}" style="width:24px; height:24px; border:none; background:transparent; cursor:pointer; display:flex; align-items:center; justify-content:center; padding:0;"><span style="width:14px; height:14px; flex-shrink:0; background:var(--icon-strong-neutral); -webkit-mask:url(icons/Close.svg) center/contain no-repeat; mask:url(icons/Close.svg) center/contain no-repeat;"></span></button>
+        </div>
+        <div style="padding:22px; display:flex; flex-direction:column; gap:12px;">
+          <div style="font-size:17px; font-weight:600; color:var(--text-stronger-neutral);">{{ modalTitle }}</div>
+          <div style="font-size:14px; line-height:20px; color:var(--text-strong-neutral);">{{ modalBody }}</div>
+          <button onClick="{{ closeModal }}" style="align-self:flex-end; height:34px; padding:0 16px; border-radius:12px; border:none; background:var(--fill-global-primary); color:#fff; font-size:14px; font-weight:500; font-family:inherit; cursor:pointer;">Close</button>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:860}}">
+
+class Component extends DCLogic {
+  state = {
+    tab: 'zoommate',
+    adminEmail: true,
+    adminEmailKinds: { summary: true, followups: true },
+    adminIm: true,
+    adminImChannels: { teamchat: true, slack: true, teams: true },
+    clientEmail: true,
+    statuses: { new: true, reminder: true, action: true, completed: true, failed: true },
+    chatIntent: true,
+    chat: { teamchat: true, slack: 'on', teams: 'connect' },
+    hover: null,
+    modalOpen: false, modalTitle: '', modalBody: '',
+  };
+
+  open(title, body) { this.setState({ modalOpen: true, modalTitle: title, modalBody: body }); }
+
+  toggle(path, key) {
+    this.setState(s => ({ [path]: Object.assign({}, s[path], { [key]: !s[path][key] }) }));
+  }
+
+  navStyle(active) {
+    return 'display:flex; align-items:center; gap:10px; padding:9px 12px; border-radius:10px; margin-bottom:2px; cursor:pointer; text-decoration:none;'
+      + (active ? 'background:var(--fill-subtler-primary);' : '');
+  }
+
+  toggleStyle(on, disabled) {
+    return 'width:36px; height:20px; border-radius:999px; border:none; flex-shrink:0; position:relative; padding:0;'
+      + 'background:' + (on ? 'var(--fill-global-primary)' : '#c9ced4') + ';'
+      + 'cursor:' + (disabled ? 'not-allowed' : 'pointer') + ';';
+  }
+  knobStyle(on) {
+    return 'position:absolute; top:2px; left:' + (on ? '18px' : '2px') + '; width:16px; height:16px; border-radius:50%; background:#fff; transition:left 140ms ease-out;';
+  }
+  tickStyle(size) {
+    return 'width:' + size + 'px; height:' + size + 'px; background:#fff;'
+      + '-webkit-mask:url(icons/CheckmarkSmall.svg) center/contain no-repeat;'
+      + 'mask:url(icons/CheckmarkSmall.svg) center/contain no-repeat;';
+  }
+  boxStyle(checked, disabled) {
+    return 'width:16px; height:16px; border-radius:4px; flex-shrink:0; margin-top:2px; display:flex; align-items:center; justify-content:center;'
+      + (checked ? 'background:' + (disabled ? '#a9b2bb' : 'var(--fill-global-primary)') + '; border:none;'
+                 : 'background:#fff; border:1.5px solid ' + (disabled ? '#d5dade' : 'var(--border-neutral)') + ';');
+  }
+  segStyle(active) {
+    return 'height:28px; padding:0 14px; border-radius:999px; border:none; font-size:13px; font-family:inherit; cursor:pointer;'
+      + (active ? 'background:var(--background-bg-default); color:var(--text-stronger-neutral); font-weight:500; box-shadow:var(--drop-shadow-sm);'
+                : 'background:transparent; color:var(--text-neutral); font-weight:400;');
+  }
+
+  renderVals() {
+    const s = this.state;
+    const emailLocked = !(s.adminEmail && s.adminEmailKinds.followups);
+    const emailLive = s.adminEmail && s.clientEmail;
+
+    const statusMeta = [
+      { key: 'new', label: 'New follow-ups', hint: 'Tasks pulled from what was said, tasks inferred from the discussion, and workflows suggested for the meeting' },
+      { key: 'action', label: 'Action required', hint: 'A follow-up needs your input before it continues' },
+      { key: 'completed', label: 'Completed', hint: 'A follow-up finished and produced a result' },
+      { key: 'failed', label: 'Failed', hint: 'A follow-up stopped with an error' },
+    ];
+
+    const chatMeta = [
+      { key: 'teamchat', name: 'Zoom Team Chat', sub: 'Delivered by Zoom — switch it on here', owned: true },
+      { key: 'slack', name: 'Slack', sub: 'Delivered by the Zoom bot. Turn it on in Slack.', owned: false },
+      { key: 'teams', name: 'Microsoft Teams', sub: 'Delivered by the Zoom bot. Turn it on in Teams.', owned: false },
+    ];
+
+    const imLocked = !s.adminIm;
+
+    return {
+      navItems: [
+        { key: 'zoommate', label: 'ZoomMate emails' },
+        { key: 'workflow', label: 'Workflow emails' },
+        { key: 'client', label: 'Client settings' },
+        { key: 'admin', label: 'Admin settings' },
+        { key: 'hitl', label: 'HITL mapping' },
+      ].map(n => ({
+        label: n.label,
+        onClick: () => this.setState({ tab: n.key, hover: null }),
+        style: this.navStyle(s.tab === n.key),
+        dotStyle: 'width:6px; height:6px; border-radius:50%; flex-shrink:0; background:' + (s.tab === n.key ? 'var(--fill-global-primary)' : 'transparent') + ';',
+        labelStyle: 'font-size:14px; line-height:18px; color:' + (s.tab === n.key ? 'var(--text-primary)' : 'var(--text-strong-neutral)') + '; font-weight:' + (s.tab === n.key ? '500' : '400') + ';',
+      })),
+
+      isZoommate: s.tab === 'zoommate',
+      isWorkflow: s.tab === 'workflow',
+      isClient: s.tab === 'client',
+      isAdmin: s.tab === 'admin',
+      isHitl: s.tab === 'hitl',
+      adminEmailLabel: (s.adminEmail && s.adminEmailKinds.followups) ? 'on' : 'off',
+
+      emailBlockOpacity: emailLocked ? 0.6 : 1,
+      emailStatusOpacity: emailLive ? 1 : 0.5,
+      emailToggleStyle: this.toggleStyle(emailLive, emailLocked),
+      emailKnobStyle: this.knobStyle(emailLive),
+      toggleEmail: () => { if (!emailLocked) this.setState({ clientEmail: !s.clientEmail }); },
+      showEmailTip: emailLocked && s.hover === 'email',
+      hoverEmailOn: () => this.setState({ hover: 'email' }),
+      hoverOff: () => this.setState({ hover: null }),
+
+      statusRows: statusMeta.map(m => {
+        const disabled = !emailLive;
+        const checked = s.statuses[m.key] && !disabled;
+        return {
+          label: m.label, hint: m.hint, checked: !!s.statuses[m.key], disabled: disabled,
+          cursor: disabled ? 'not-allowed' : 'pointer',
+          boxStyle: this.boxStyle(s.statuses[m.key], disabled),
+          tickStyle: s.statuses[m.key] ? this.tickStyle(11) : 'display:none;',
+          onChange: () => { if (!disabled) this.toggle('statuses', m.key); },
+        };
+      }),
+
+      toggleChatIntent: () => this.setState({ chatIntent: !s.chatIntent }),
+      chatIntentToggleStyle: this.toggleStyle(s.chatIntent, false),
+      chatIntentKnobStyle: this.knobStyle(s.chatIntent),
+
+      chatChannels: chatMeta.map((m, i) => {
+        const v = s.chat[m.key];
+        const locked = imLocked || !s.adminImChannels[m.key] || !s.chatIntent;
+        const on = v === true || v === 'on';
+        const connected = v === 'on' || v === 'off';
+        const base = {
+          name: m.name,
+          rowStyle: 'padding:14px 20px; display:flex; align-items:center; justify-content:space-between; gap:16px; position:relative;'
+            + (i < chatMeta.length - 1 ? 'border-bottom:1px solid var(--border-subtle-neutral);' : '')
+            + 'opacity:' + (locked ? '0.55' : '1') + ';',
+          showTip: locked && s.hover === m.key,
+          onEnter: () => this.setState({ hover: m.key }),
+        };
+
+        if (m.owned) {
+          return Object.assign(base, {
+            sub: locked ? 'Turned off for your account' : m.sub,
+            showToggle: true, showState: false,
+            toggleStyle: this.toggleStyle(on && !locked, locked),
+            knobStyle: this.knobStyle(on && !locked),
+            onToggle: () => { if (!locked) this.setState(st => ({ chat: Object.assign({}, st.chat, { [m.key]: on ? 'off' : 'on' }) })); },
+            stateChipStyle: '', stateLabel: '', manageLabel: '', onManage: () => {},
+            tip: m.name + ' notifications are turned off for your account. Ask your admin to enable them in My Notes settings.',
+          });
+        }
+
+        return Object.assign(base, {
+          sub: locked ? 'Turned off for your account' : m.sub,
+          showToggle: false, showState: !locked,
+          toggleStyle: '', knobStyle: '', onToggle: () => {},
+          stateChipStyle: 'font-size:12px; font-weight:500; padding:4px 10px; border-radius:999px;'
+            + (connected ? 'background:var(--fill-subtler-success); color:var(--text-success);' : 'background:var(--fill-subtle-neutral); color:var(--text-neutral);'),
+          stateLabel: connected ? 'Connected' : 'Not connected',
+          manageLabel: connected ? 'Manage in ' + m.name : 'Set up in ' + m.name,
+          onManage: () => this.open(m.name + ' is managed by the Zoom bot',
+            connected
+              ? 'Opens the Zoom app inside ' + m.name + '. Delivery is switched on and off there, because the bot holds the authorization — Zoom can only see whether you are connected.'
+              : 'Opens the Zoom app in ' + m.name + ' so you can authorize it. Your admin must first enable the Zoom app for the workspace in Zoom Marketplace; after that, each user authorizes once inside ' + m.name + '.'),
+          tip: 'Your account has not enabled ' + m.name + ' notifications for My Notes.',
+        });
+      }),
+
+      toggleAdminEmail: () => this.setState({ adminEmail: !s.adminEmail }),
+      adminEmailChildOpacity: s.adminEmail ? 1 : 0.5,
+      adminEmailKinds: [
+        { key: 'summary', label: 'Meeting summary in My Notes', badge: '', note: 'The post-meeting summary email.' },
+        { key: 'followups', label: 'Follow-ups in My Notes', badge: 'NEW \u00b7 P0', note: 'Emails about follow-up tasks and suggested workflows generated by ZoomMate and Workflow. Users choose which statuses they want in the client.' },
+      ].map(k => ({
+        label: k.label, note: k.note, badge: k.badge,
+        badgeStyle: k.badge ? 'font-size:10px; font-weight:600; padding:2px 7px; border-radius:999px; background:var(--fill-global-primary); color:#fff;' : 'display:none;',
+        checked: !!s.adminEmailKinds[k.key],
+        disabled: !s.adminEmail,
+        cursor: s.adminEmail ? 'pointer' : 'not-allowed',
+        boxStyle: this.boxStyle(s.adminEmailKinds[k.key], !s.adminEmail),
+        tickStyle: s.adminEmailKinds[k.key] ? this.tickStyle(10) : 'display:none;',
+        onChange: () => { if (s.adminEmail) this.toggle('adminEmailKinds', k.key); },
+      })),
+      adminEmailToggleStyle: this.toggleStyle(s.adminEmail, false),
+      adminEmailKnobStyle: this.knobStyle(s.adminEmail),
+      toggleAdminIm: () => this.setState({ adminIm: !s.adminIm }),
+      adminImToggleStyle: this.toggleStyle(s.adminIm, false),
+      adminImKnobStyle: this.knobStyle(s.adminIm),
+      adminImChildOpacity: s.adminIm ? 1 : 0.5,
+      adminImChannels: [
+        { key: 'teamchat', label: 'Zoom Team Chat', note: 'Zoom owns delivery end to end' },
+        { key: 'slack', label: 'Slack', note: 'delivery gated by the Zoom bot in Zoom Marketplace' },
+        { key: 'teams', label: 'Microsoft Teams', note: 'delivery gated by the Zoom bot in Zoom Marketplace' },
+      ].map(c => ({
+        label: c.label, note: c.note,
+        checked: !!s.adminImChannels[c.key],
+        disabled: imLocked,
+        cursor: imLocked ? 'not-allowed' : 'pointer',
+        boxStyle: this.boxStyle(s.adminImChannels[c.key], imLocked),
+        tickStyle: s.adminImChannels[c.key] ? this.tickStyle(10) : 'display:none;',
+        onChange: () => { if (!imLocked) this.toggle('adminImChannels', c.key); },
+      })),
+
+      modalOpen: s.modalOpen, modalTitle: s.modalTitle, modalBody: s.modalBody,
+      closeModal: () => this.setState({ modalOpen: false }),
+      stopProp: (e) => e.stopPropagation(),
+      openPanel: () => this.open('Follow-ups · Product Roadmap Sync', 'Opens the Follow-ups tab in My Notes with all 5 items in their current state.'),
+      openRunAll: () => this.open('Run all', 'Starts every not-yet-started task and workflow for this meeting. The two that already ran are left alone.'),
+      openRow: () => this.open('Open in Follow-ups', 'Row-level controls — customize the prompt, edit the workflow rule, rate the suggestion, or open the overflow menu — all deep-link into the Follow-ups panel. Email never edits anything inline.'),
+      openRun: () => this.open('Start this follow-up', 'Opens the task in the Follow-ups panel and starts it. Email never executes anything inline.'),
+      openResult: () => this.open('View result', 'Deep-links straight to this result in the Follow-ups panel.'),
+      openChat: () => this.open('Open chat', 'Opens the one-to-one chat with this person and pre-fills the message. Nothing is sent until you press send.'),
+      openPicker: () => this.open('Choose which chat to open', 'Opens the existing contact picker with the message attached. We never guess a recipient \u2014 channels, group chats, and thread replies are out of scope for this round.'),
+      openCopy: () => this.open('Copied', 'The result is on your clipboard, formatted the way it was generated.'),
+      openEmail: () => this.open('Open in Mail', 'Opens a draft in Zoom Mail with recipients, subject, and body pre-filled from the markdown the task returned.'),
+      openDoc: () => this.open('Open doc', 'Opens the generated document. The task returns the doc link so the card can point straight at it.'),
+      openSheet: () => this.open('Open sheet', 'Opens the generated spreadsheet. The task returns the sheet link so the card can point straight at it.'),
+      openReview: () => this.open('Review and continue', 'Opens the item so you can confirm or edit before it continues.'),
+      openDetails: () => this.open('View details', 'Shows the full error and offers a retry from the Follow-ups panel.'),
+    };
+  }
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,917 @@
+/* ============================================================
+   Zoom Design Tokens — generated from @zoom/design-token v0.9.1
+   Source: tokens/*.json (colors-light, colors-dark, effects-*, typography)
+   Do NOT hand-edit values here — edit the source JSON and regenerate.
+   ============================================================ */
+
+/* ——— Inter (CDN fallback for non-Apple platforms) ——— */
+/* SF Pro is the canonical Zoom font but is Apple-licensed and only resolves
+   via system-ui on macOS/iOS. For Windows / Linux / claude.ai render
+   environments, Inter loads from Google Fonts as a near-identical stand-in
+   (variable weights 300..900, similar metrics). The font stack below picks
+   SF on Apple, Inter elsewhere. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300..900&display=swap');
+
+/* ——— SF Pro (locally hosted — only resolves when the kit is served with
+   filesystem access to tokens/fonts/, e.g. running locally. In claude.ai's
+   sandbox these 404 silently and the stack falls through to Inter.) ——— */
+/* typography.json specifies "system-ui, sans-serif"; the generated stack below
+   adds -apple-system + Inter so SF Pro renders on Apple and Inter renders
+   everywhere else, including claude.ai's sandbox. */
+@font-face { font-family: "SF Pro Text"; font-weight: 400; font-display: swap;
+  src: url("fonts/SF-Pro-Text-Regular.otf") format("opentype"); }
+@font-face { font-family: "SF Pro Text"; font-weight: 500; font-display: swap;
+  src: url("fonts/SF-Pro-Text-Medium.otf") format("opentype"); }
+@font-face { font-family: "SF Pro Text"; font-weight: 600; font-display: swap;
+  src: url("fonts/SF-Pro-Text-Semibold.otf") format("opentype"); }
+@font-face { font-family: "SF Pro Text"; font-weight: 700; font-display: swap;
+  src: url("fonts/SF-Pro-Text-Bold.otf") format("opentype"); }
+@font-face { font-family: "SF Pro Display"; font-weight: 500; font-display: swap;
+  src: url("fonts/SF-Pro-Display-Medium.otf") format("opentype"); }
+@font-face { font-family: "SF Pro Display"; font-weight: 600; font-display: swap;
+  src: url("fonts/SF-Pro-Display-Semibold.otf") format("opentype"); }
+@font-face { font-family: "SF Pro Display"; font-weight: 700; font-display: swap;
+  src: url("fonts/SF-Pro-Display-Bold.otf") format("opentype"); }
+
+/* ============================================================
+   LIGHT THEME (default)
+   ============================================================ */
+:root {
+  color-scheme: light;
+
+  /* — Colors — */
+  --background-bg-default: #ffffff;
+  --background-bg-neutral: #fcfdfd;
+  --background-bg-darker-neutral: #f1f4f6;
+  --fill-default: #ffffff;
+  --fill-subtler-neutral: #f7f9fa;
+  --fill-subtle-neutral: #f1f4f6;
+  --fill-neutral: #686f79;
+  --fill-global-neutral: #555b62;
+  --fill-subtler-primary: #f2f8ff;
+  --fill-primary: #0d6bde;
+  --fill-global-primary: #0d6bde;
+  --fill-subtler-error: #fff2f5;
+  --fill-error: #da1639;
+  --fill-global-error: #da1639;
+  --fill-subtler-warning: #fff9f2;
+  --fill-warning: #b36200;
+  --fill-global-warning: #b36200;
+  --fill-subtler-success: #f2fff6;
+  --fill-success: #247f40;
+  --fill-global-success: #247f40;
+  --fill-subtler-informative: #f2f8ff;
+  --fill-informative: #0d6bde;
+  --fill-global-informative: #0d6bde;
+  --fill-subtler-complementary: #fff7f2;
+  --fill-complementary: #ff5f0f;
+  --fill-global-complementary: #9d3b0f;
+  --fill-subtler-supplementary1: #f7f2fb;
+  --fill-supplementary1: #9053c2;
+  --fill-global-supplementary1: #9053c2;
+  --fill-subtler-supplementary2: #d4fcfb;
+  --fill-supplementary2: #007c7c;
+  --fill-global-supplementary2: #007c7c;
+  --fill-global-supplementary3: #2974a8;
+  --fill-contrary-subtler-transparent: rgba(0, 0, 0, 0.04);
+  --fill-contrary-subtle-transparent: rgba(0, 0, 0, 0.12);
+  --fill-contrary-transparent: rgba(0, 0, 0, 0.42);
+  --fill-contrary-strong-transparent: rgba(0, 0, 0, 0.56);
+  --fill-blend-subtle-transparent: rgba(255, 255, 255, 0.1);
+  --fill-blend-transparent: rgba(255, 255, 255, 0.33);
+  --fill-blend-strong-transparent: rgba(255, 255, 255, 0.48);
+  --fill-global-subtle-dark-transparent: rgba(0, 0, 0, 0.12);
+  --fill-global-dark-transparent: rgba(0, 0, 0, 0.42);
+  --fill-global-strong-dark-transparent: rgba(0, 0, 0, 0.56);
+  --fill-global-subtle-light-transparent: rgba(255, 255, 255, 0.1);
+  --fill-global-light-transparent: rgba(255, 255, 255, 0.33);
+  --fill-global-strong-light-transparent: rgba(255, 255, 255, 0.48);
+  --fill-elevated-subtler: rgba(255, 255, 255, 0.5);
+  --fill-elevated-subtle: rgba(255, 255, 255, 0.6);
+  --fill-elevated-default: rgba(255, 255, 255, 0.7);
+  --fill-elevated-strong: rgba(255, 255, 255, 0.8);
+  --fill-elevated-stronger: rgba(255, 255, 255, 0.95);
+  --fill-elevated-strongest: #ffffff;
+  --text-neutral: #686f79;
+  --text-strong-neutral: #555b62;
+  --text-stronger-neutral: #222325;
+  --text-primary: #0d6bde;
+  --text-global-primary: #0d6bde;
+  --text-alternative-primary: #0b5cff;
+  --text-strong-primary: #2057b1;
+  --text-stronger-primary: #1a2a52;
+  --text-error: #da1639;
+  --text-global-error: #da1639;
+  --text-alternative-error: #db1439;
+  --text-strong-error: #af1e30;
+  --text-stronger-error: #54171a;
+  --text-warning: #b36200;
+  --text-strong-warning: #884b0a;
+  --text-stronger-warning: #492b0d;
+  --text-global-strong-warning: #884b0a;
+  --text-success: #247f40;
+  --text-strong-success: #196830;
+  --text-stronger-success: #123019;
+  --text-informative: #0d6bde;
+  --text-strong-informative: #2057b1;
+  --text-stronger-informative: #1a2a52;
+  --text-complementary: #cf4b0a;
+  --text-strong-complementary: #9d3b0f;
+  --text-stronger-complementary: #59260f;
+  --text-supplementary1: #9053c2;
+  --text-strong-supplementary1: #73439a;
+  --text-stronger-supplementary1: #261735;
+  --text-supplementary2: #007c7c;
+  --text-strong-supplementary2: #006462;
+  --text-stronger-supplementary2: #002322;
+  --icon-neutral: #8e9194;
+  --icon-strong-neutral: #555b62;
+  --icon-stronger-neutral: #222325;
+  --icon-primary: #3b90f7;
+  --icon-error: #ff2638;
+  --icon-warning: #ffd700;
+  --icon-success: #09a639;
+  --icon-informative: #3b90f7;
+  --icon-complementary: #ff5500;
+  --icon-supplementary1: #ad75da;
+  --icon-supplementary2: #009e9a;
+  --border-subtle-neutral: #dfe3e8;
+  --border-neutral: #939ba4;
+  --border-strong-neutral: #555b62;
+  --border-subtle-primary: #a8ccf8;
+  --border-primary: #559cf2;
+  --border-strong-primary: #2057b1;
+  --border-subtle-error: #f6aab8;
+  --border-error: #ff6682;
+  --border-strong-error: #af1e30;
+  --border-subtle-warning: #e1bd93;
+  --border-warning: #c28030;
+  --border-strong-warning: #884b0a;
+  --border-subtle-success: #9ecead;
+  --border-success: #48ad67;
+  --border-strong-success: #196830;
+  --border-subtle-informative: #a8ccf8;
+  --border-informative: #559cf2;
+  --border-strong-informative: #2057b1;
+  --border-subtle-complementary: #ffab81;
+  --border-complementary: #ff5f0f;
+  --border-strong-complementary: #9d3b0f;
+  --border-subtle-supplementary1: #ebddf6;
+  --border-supplementary1: #ad75da;
+  --border-strong-supplementary1: #73439a;
+  --border-subtle-supplementary2: #61f6f2;
+  --border-supplementary2: #009e9a;
+  --border-strong-supplementary2: #006462;
+  --state-subtle-neutral-hover: rgba(110, 118, 128, 0.12);
+  --state-subtle-neutral-press: rgba(110, 118, 128, 0.24);
+  --state-subtle-neutral-select: rgba(110, 118, 128, 0.12);
+  --state-neutral-hover: #5e646d;
+  --state-neutral-press: #3e4349;
+  --state-subtle-disable: rgba(173, 177, 184, 0.25);
+  --state-disable: #adb1b8;
+  --state-hover: rgba(0, 0, 0, 0.12);
+  --state-press: rgba(0, 0, 0, 0.42);
+  --state-inactive: rgba(255, 255, 255, 0.6);
+  --state-global-disable: #adb1b8;
+  --state-subtle-primary-hover: rgba(14, 114, 237, 0.12);
+  --state-subtle-primary-press: rgba(14, 114, 237, 0.42);
+  --state-primary-hover: #0c60c8;
+  --state-primary-press: #084085;
+  --state-subtle-primary-disable: #aacdf8;
+  --state-subtle-error-hover: rgba(232, 23, 61, 0.12);
+  --state-subtle-error-press: rgba(232, 23, 61, 0.42);
+  --state-error-hover: #c41434;
+  --state-error-press: #830d23;
+  --state-subtle-error-disable: #f7bac6;
+  --state-subtle-warning-hover: rgba(179, 98, 0, 0.12);
+  --state-subtle-warning-press: rgba(179, 98, 0, 0.42);
+  --state-warning-hover: #a15800;
+  --state-warning-press: #6c3b00;
+  --state-subtle-success-hover: rgba(38, 133, 67, 0.12);
+  --state-subtle-success-press: rgba(38, 133, 67, 0.42);
+  --state-success-hover: #207239;
+  --state-success-press: #164c26;
+  --state-subtle-informative-hover: rgba(14, 114, 237, 0.12);
+  --state-subtle-informative-press: rgba(14, 114, 237, 0.42);
+  --state-informative-hover: #0c60c8;
+  --state-informative-press: #084085;
+  --state-subtle-complementary-hover: rgba(207, 75, 10, 0.12);
+  --state-subtle-complementary-press: rgba(207, 75, 10, 0.42);
+  --state-complementary-hover: #ba4409;
+  --state-complementary-press: #7c2d06;
+  --state-subtle-supplementary1-hover: rgba(144, 83, 194, 0.12);
+  --state-subtle-supplementary1-press: rgba(144, 83, 194, 0.42);
+  --state-supplementary1-hover: #8341b8;
+  --state-supplementary1-press: #572c7b;
+  --state-subtle-supplementary2-hover: rgba(0, 124, 124, 0.12);
+  --state-subtle-supplementary2-press: rgba(0, 124, 124, 0.42);
+  --state-supplementary2-hover: #007070;
+  --state-supplementary2-press: #004a4a;
+  --state-contrary-subtler-transparent-hover: rgba(0, 0, 0, 0.08);
+  --state-contrary-subtler-transparent-press: rgba(0, 0, 0, 0.24);
+  --state-contrary-subtle-transparent-hover: rgba(0, 0, 0, 0.24);
+  --state-contrary-subtle-transparent-press: rgba(0, 0, 0, 0.48);
+  --state-contrary-transparent-hover: rgba(0, 0, 0, 0.48);
+  --state-contrary-transparent-press: rgba(0, 0, 0, 0.8);
+  --state-contrary-strong-transparent-hover: rgba(0, 0, 0, 0.64);
+  --state-contrary-strong-transparent-press: rgba(0, 0, 0, 0.96);
+  --state-global-subtle-dark-transparent-hover: rgba(0, 0, 0, 0.24);
+  --state-global-subtle-dark-transparent-press: rgba(0, 0, 0, 0.48);
+  --state-global-dark-transparent-hover: rgba(0, 0, 0, 0.48);
+  --state-global-dark-transparent-press: rgba(0, 0, 0, 0.8);
+  --state-global-strong-dark-transparent-hover: rgba(0, 0, 0, 0.64);
+  --state-global-strong-dark-transparent-press: rgba(0, 0, 0, 0.96);
+  --state-global-subtle-light-transparent-hover: rgba(255, 255, 255, 0.48);
+  --state-global-subtle-light-transparent-press: rgba(0, 0, 0, 0.32);
+  --state-global-light-transparent-hover: rgba(255, 255, 255, 0.64);
+  --state-global-light-transparent-press: rgba(0, 0, 0, 0.24);
+  --state-global-strong-light-transparent-hover: rgba(255, 255, 255, 0.8);
+  --state-global-strong-light-transparent-press: rgba(0, 0, 0, 0.16);
+  --inverse-default: #ffffff;
+  --inverse-neutral: #f7f9fa;
+  --inverse-global-default: #ffffff;
+  --underlay-dark: rgba(0, 0, 0, 0.2);
+  --underlay-default: rgba(255, 255, 255, 0.8);
+  --underlay-drop-shadow: rgba(0, 0, 0, 0.08);
+  --underlay-drop-shadow-global: rgba(0, 0, 0, 0.08);
+  /* — Effects / shadows — */
+  --drop-shadow-sm: 0px 4px 8px 0px rgba(0, 0, 0, 0.08), 0px 2px 4px 0px rgba(0, 0, 0, 0.08);
+  --drop-shadow-global-sm: 0px 4px 8px 0px rgba(0, 0, 0, 0.08), 0px 2px 4px 0px rgba(0, 0, 0, 0.08);
+  --drop-shadow-md: 0px 12px 24px 0px rgba(0, 0, 0, 0.08), 0px 6px 12px 0px rgba(0, 0, 0, 0.08);
+  --drop-shadow-lg: 0px 24px 48px 0px rgba(0, 0, 0, 0.08), 0px 12px 24px 0px rgba(0, 0, 0, 0.08);
+
+  /* — Typography (v0.14.3 — 18 styles, letter-spacing baked in) — */
+  --type-display-font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", system-ui, sans-serif;
+  --type-display-font-weight: 700;
+  --type-display-font-size: 44px;
+  --type-display-line-height: 48px;
+  --type-display-letter-spacing: 0.37px;
+  --type-headline-1-font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", system-ui, sans-serif;
+  --type-headline-1-font-weight: 700;
+  --type-headline-1-font-size: 40px;
+  --type-headline-1-line-height: 44px;
+  --type-headline-1-letter-spacing: 0.37px;
+  --type-headline-2-font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", system-ui, sans-serif;
+  --type-headline-2-font-weight: 700;
+  --type-headline-2-font-size: 36px;
+  --type-headline-2-line-height: 40px;
+  --type-headline-2-letter-spacing: 0.37px;
+  --type-title-1-emphasis-font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", system-ui, sans-serif;
+  --type-title-1-emphasis-font-weight: 700;
+  --type-title-1-emphasis-font-size: 24px;
+  --type-title-1-emphasis-line-height: 28px;
+  --type-title-1-emphasis-letter-spacing: 0.07px;
+  --type-title-1-font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", system-ui, sans-serif;
+  --type-title-1-font-weight: 400;
+  --type-title-1-font-size: 24px;
+  --type-title-1-line-height: 28px;
+  --type-title-1-letter-spacing: 0.07px;
+  --type-title-2-emphasis-font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", system-ui, sans-serif;
+  --type-title-2-emphasis-font-weight: 700;
+  --type-title-2-emphasis-font-size: 20px;
+  --type-title-2-emphasis-line-height: 24px;
+  --type-title-2-emphasis-letter-spacing: -0.45px;
+  --type-title-2-font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", system-ui, sans-serif;
+  --type-title-2-font-weight: 400;
+  --type-title-2-font-size: 20px;
+  --type-title-2-line-height: 24px;
+  --type-title-2-letter-spacing: -0.45px;
+  --type-title-3-emphasis-font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", system-ui, sans-serif;
+  --type-title-3-emphasis-font-weight: 700;
+  --type-title-3-emphasis-font-size: 16px;
+  --type-title-3-emphasis-line-height: 20px;
+  --type-title-3-emphasis-letter-spacing: -0.31px;
+  --type-title-3-font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", system-ui, sans-serif;
+  --type-title-3-font-weight: 400;
+  --type-title-3-font-size: 16px;
+  --type-title-3-line-height: 20px;
+  --type-title-3-letter-spacing: -0.31px;
+  --type-body-1-emphasis-font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", system-ui, sans-serif;
+  --type-body-1-emphasis-font-weight: 600;
+  --type-body-1-emphasis-font-size: 14px;
+  --type-body-1-emphasis-line-height: 18px;
+  --type-body-1-emphasis-letter-spacing: -0.15px;
+  --type-body-1-font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", system-ui, sans-serif;
+  --type-body-1-font-weight: 400;
+  --type-body-1-font-size: 14px;
+  --type-body-1-line-height: 18px;
+  --type-body-1-letter-spacing: -0.15px;
+  --type-body-1-paragraph-spacing: 8px;
+  --type-paragraph-1-font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", system-ui, sans-serif;
+  --type-paragraph-1-font-weight: 400;
+  --type-paragraph-1-font-size: 14px;
+  --type-paragraph-1-line-height: 20px;
+  --type-paragraph-1-letter-spacing: -0.15px;
+  --type-paragraph-1-paragraph-spacing: 8px;
+  --type-body-2-emphasis-font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", system-ui, sans-serif;
+  --type-body-2-emphasis-font-weight: 600;
+  --type-body-2-emphasis-font-size: 12px;
+  --type-body-2-emphasis-line-height: 16px;
+  --type-body-2-emphasis-letter-spacing: 0px;
+  --type-body-2-font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", system-ui, sans-serif;
+  --type-body-2-font-weight: 400;
+  --type-body-2-font-size: 12px;
+  --type-body-2-line-height: 16px;
+  --type-body-2-letter-spacing: 0px;
+  --type-paragraph-2-font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", system-ui, sans-serif;
+  --type-paragraph-2-font-weight: 400;
+  --type-paragraph-2-font-size: 12px;
+  --type-paragraph-2-line-height: 18px;
+  --type-paragraph-2-letter-spacing: 0px;
+  --type-caption-emphasis-font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", system-ui, sans-serif;
+  --type-caption-emphasis-font-weight: 500;
+  --type-caption-emphasis-font-size: 10px;
+  --type-caption-emphasis-line-height: 16px;
+  --type-caption-emphasis-letter-spacing: 0.12px;
+  --type-caption-font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", system-ui, sans-serif;
+  --type-caption-font-weight: 400;
+  --type-caption-font-size: 10px;
+  --type-caption-line-height: 16px;
+  --type-caption-letter-spacing: 0.12px;
+  --type-label-font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", system-ui, sans-serif;
+  --type-label-font-weight: 600;
+  --type-label-font-size: 8px;
+  --type-label-line-height: 12px;
+  --type-label-letter-spacing: 0.12px;
+}
+
+/* ============================================================
+   DARK THEME — apply via <html data-theme="dark"> or [data-theme="dark"]
+   ============================================================ */
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* — Colors — */
+  --background-bg-default: #131619;
+  --background-bg-neutral: #1d1e20;
+  --background-bg-darker-neutral: #040506;
+  --fill-default: #222325;
+  --fill-subtler-neutral: #2a2b2d;
+  --fill-subtle-neutral: #313235;
+  --fill-neutral: #939ba4;
+  --fill-global-neutral: #555b62;
+  --fill-subtler-primary: #1a2a52;
+  --fill-primary: #559cf2;
+  --fill-global-primary: #0d6bde;
+  --fill-subtler-error: #54171a;
+  --fill-error: #ff6682;
+  --fill-global-error: #da1639;
+  --fill-subtler-warning: #492b0d;
+  --fill-warning: #c28030;
+  --fill-global-warning: #b36200;
+  --fill-subtler-success: #123019;
+  --fill-success: #48ad67;
+  --fill-global-success: #247f40;
+  --fill-subtler-informative: #1a2a52;
+  --fill-informative: #559cf2;
+  --fill-global-informative: #0d6bde;
+  --fill-subtler-complementary: #59260f;
+  --fill-complementary: #ff5f0f;
+  --fill-global-complementary: #9d3b0f;
+  --fill-subtler-supplementary1: #261735;
+  --fill-supplementary1: #a66bd7;
+  --fill-global-supplementary1: #9053c2;
+  --fill-subtler-supplementary2: #002322;
+  --fill-supplementary2: #009591;
+  --fill-global-supplementary2: #007c7c;
+  --fill-global-supplementary3: #2974a8;
+  --fill-contrary-subtler-transparent: rgba(255, 255, 255, 0.04);
+  --fill-contrary-subtle-transparent: rgba(255, 255, 255, 0.1);
+  --fill-contrary-transparent: rgba(255, 255, 255, 0.33);
+  --fill-contrary-strong-transparent: rgba(255, 255, 255, 0.48);
+  --fill-blend-subtle-transparent: rgba(0, 0, 0, 0.12);
+  --fill-blend-transparent: rgba(0, 0, 0, 0.42);
+  --fill-blend-strong-transparent: rgba(0, 0, 0, 0.56);
+  --fill-global-subtle-dark-transparent: rgba(0, 0, 0, 0.12);
+  --fill-global-dark-transparent: rgba(0, 0, 0, 0.42);
+  --fill-global-strong-dark-transparent: rgba(0, 0, 0, 0.56);
+  --fill-global-subtle-light-transparent: rgba(255, 255, 255, 0.1);
+  --fill-global-light-transparent: rgba(255, 255, 255, 0.33);
+  --fill-global-strong-light-transparent: rgba(255, 255, 255, 0.48);
+  --fill-elevated-subtler: rgba(19, 22, 25, 0.8);
+  --fill-elevated-subtle: rgba(34, 35, 37, 0.8);
+  --fill-elevated-default: rgba(49, 50, 53, 0.8);
+  --fill-elevated-strong: rgba(49, 50, 53, 0.9);
+  --fill-elevated-stronger: rgba(49, 50, 53, 0.95);
+  --fill-elevated-strongest: #313235;
+  --text-neutral: #939ba4;
+  --text-strong-neutral: #dfe3e8;
+  --text-stronger-neutral: #f7f9fa;
+  --text-primary: #559cf2;
+  --text-global-primary: #0d6bde;
+  --text-alternative-primary: #75aff5;
+  --text-strong-primary: #a8ccf8;
+  --text-stronger-primary: #f2f8ff;
+  --text-error: #ff6682;
+  --text-global-error: #da1639;
+  --text-alternative-error: #f48a9e;
+  --text-strong-error: #f6aab8;
+  --text-stronger-error: #fff2f5;
+  --text-warning: #c28030;
+  --text-strong-warning: #e1bd93;
+  --text-stronger-warning: #fff9f2;
+  --text-global-strong-warning: #884b0a;
+  --text-success: #48ad67;
+  --text-strong-success: #9ecead;
+  --text-stronger-success: #f2fff6;
+  --text-informative: #559cf2;
+  --text-strong-informative: #a8ccf8;
+  --text-stronger-informative: #f2f8ff;
+  --text-complementary: #ff5f0f;
+  --text-strong-complementary: #ffab81;
+  --text-stronger-complementary: #fff7f2;
+  --text-supplementary1: #a66bd7;
+  --text-strong-supplementary1: #bb8ce0;
+  --text-stronger-supplementary1: #f7f2fb;
+  --text-supplementary2: #009591;
+  --text-strong-supplementary2: #00b2ae;
+  --text-stronger-supplementary2: #d4fcfb;
+  --icon-neutral: #8e9194;
+  --icon-strong-neutral: #dfe3e8;
+  --icon-stronger-neutral: #f7f9fa;
+  --icon-primary: #3b90f7;
+  --icon-error: #ff2638;
+  --icon-warning: #ffd700;
+  --icon-success: #09a639;
+  --icon-informative: #3b90f7;
+  --icon-complementary: #ff5500;
+  --icon-supplementary1: #864eb5;
+  --icon-supplementary2: #007573;
+  --border-subtle-neutral: #313235;
+  --border-neutral: #686f79;
+  --border-strong-neutral: #c1c6ce;
+  --border-subtle-primary: #213c77;
+  --border-primary: #0d6bde;
+  --border-strong-primary: #7ab1f4;
+  --border-subtle-error: #771d23;
+  --border-error: #da1639;
+  --border-strong-error: #f17e93;
+  --border-subtle-warning: #5d350e;
+  --border-warning: #b36200;
+  --border-strong-warning: #d19f61;
+  --border-subtle-success: #174823;
+  --border-success: #247f40;
+  --border-strong-success: #74b688;
+  --border-subtle-informative: #213c77;
+  --border-informative: #0d6bde;
+  --border-strong-informative: #7ab1f4;
+  --border-subtle-complementary: #6b2c0f;
+  --border-complementary: #cf4b0a;
+  --border-strong-complementary: #ff8548;
+  --border-subtle-supplementary1: #38214c;
+  --border-supplementary1: #864eb5;
+  --border-strong-supplementary1: #bb8ce0;
+  --border-subtle-supplementary2: #003130;
+  --border-supplementary2: #007573;
+  --border-strong-supplementary2: #00b2ae;
+  --state-subtle-neutral-hover: rgba(110, 118, 128, 0.33);
+  --state-subtle-neutral-press: rgba(0, 0, 0, 0.42);
+  --state-subtle-neutral-select: rgba(110, 118, 128, 0.33);
+  --state-neutral-hover: #b6bac0;
+  --state-neutral-press: #3e4349;
+  --state-subtle-disable: rgba(89, 96, 105, 0.25);
+  --state-disable: #596069;
+  --state-hover: rgba(255, 255, 255, 0.33);
+  --state-press: rgba(0, 0, 0, 0.42);
+  --state-inactive: rgba(0, 0, 0, 0.65);
+  --state-global-disable: #adb1b8;
+  --state-subtle-primary-hover: rgba(14, 114, 237, 0.33);
+  --state-subtle-primary-press: rgba(0, 0, 0, 0.42);
+  --state-primary-hover: #7db4f7;
+  --state-primary-press: #084085;
+  --state-subtle-primary-disable: #2b4588;
+  --state-subtle-error-hover: rgba(232, 23, 61, 0.33);
+  --state-subtle-error-press: rgba(0, 0, 0, 0.42);
+  --state-error-hover: #f38498;
+  --state-error-press: #830d23;
+  --state-subtle-error-disable: #7a383b;
+  --state-subtle-warning-hover: rgba(179, 98, 0, 0.33);
+  --state-subtle-warning-press: rgba(0, 0, 0, 0.42);
+  --state-warning-hover: #ffb459;
+  --state-warning-press: #6c3b00;
+  --state-subtle-success-hover: rgba(38, 133, 67, 0.33);
+  --state-subtle-success-press: rgba(0, 0, 0, 0.42);
+  --state-success-hover: #78d995;
+  --state-success-press: #164c26;
+  --state-subtle-informative-hover: rgba(14, 114, 237, 0.33);
+  --state-subtle-informative-press: rgba(0, 0, 0, 0.42);
+  --state-informative-hover: #7db4f7;
+  --state-informative-press: #084085;
+  --state-subtle-complementary-hover: rgba(207, 75, 10, 0.33);
+  --state-subtle-complementary-press: rgba(0, 0, 0, 0.42);
+  --state-complementary-hover: #f89f73;
+  --state-complementary-press: #7c2d06;
+  --state-subtle-supplementary1-hover: rgba(144, 83, 194, 0.33);
+  --state-subtle-supplementary1-press: rgba(0, 0, 0, 0.42);
+  --state-supplementary1-hover: #c8a9e1;
+  --state-supplementary1-press: #572c7b;
+  --state-subtle-supplementary2-hover: rgba(0, 124, 124, 0.33);
+  --state-subtle-supplementary2-press: rgba(0, 0, 0, 0.42);
+  --state-supplementary2-hover: #3effff;
+  --state-supplementary2-press: #004a4a;
+  --state-contrary-subtler-transparent-hover: rgba(255, 255, 255, 0.32);
+  --state-contrary-subtler-transparent-press: rgba(0, 0, 0, 0.48);
+  --state-contrary-subtle-transparent-hover: rgba(255, 255, 255, 0.48);
+  --state-contrary-subtle-transparent-press: rgba(0, 0, 0, 0.32);
+  --state-contrary-transparent-hover: rgba(255, 255, 255, 0.64);
+  --state-contrary-transparent-press: rgba(0, 0, 0, 0.24);
+  --state-contrary-strong-transparent-hover: rgba(255, 255, 255, 0.8);
+  --state-contrary-strong-transparent-press: rgba(0, 0, 0, 0.16);
+  --state-global-subtle-dark-transparent-hover: rgba(0, 0, 0, 0.24);
+  --state-global-subtle-dark-transparent-press: rgba(0, 0, 0, 0.48);
+  --state-global-dark-transparent-hover: rgba(0, 0, 0, 0.48);
+  --state-global-dark-transparent-press: rgba(0, 0, 0, 0.8);
+  --state-global-strong-dark-transparent-hover: rgba(0, 0, 0, 0.64);
+  --state-global-strong-dark-transparent-press: rgba(0, 0, 0, 0.96);
+  --state-global-subtle-light-transparent-hover: rgba(255, 255, 255, 0.48);
+  --state-global-subtle-light-transparent-press: rgba(0, 0, 0, 0.32);
+  --state-global-light-transparent-hover: rgba(255, 255, 255, 0.64);
+  --state-global-light-transparent-press: rgba(0, 0, 0, 0.24);
+  --state-global-strong-light-transparent-hover: rgba(255, 255, 255, 0.8);
+  --state-global-strong-light-transparent-press: rgba(0, 0, 0, 0.16);
+  --inverse-default: #131619;
+  --inverse-neutral: #1d1e20;
+  --inverse-global-default: #ffffff;
+  --underlay-dark: rgba(0, 0, 0, 0.52);
+  --underlay-default: rgba(0, 0, 0, 0.8);
+  --underlay-drop-shadow: rgba(0, 0, 0, 0.48);
+  --underlay-drop-shadow-global: rgba(0, 0, 0, 0.08);
+  /* — Effects / shadows — */
+  --drop-shadow-sm: 0px 4px 8px 0px rgba(0, 0, 0, 0.48), 0px 2px 4px 0px rgba(0, 0, 0, 0.48);
+  --drop-shadow-global-sm: 0px 4px 8px 0px rgba(0, 0, 0, 0.08), 0px 2px 4px 0px rgba(0, 0, 0, 0.08);
+  --drop-shadow-md: 0px 12px 24px 0px rgba(0, 0, 0, 0.48), 0px 6px 12px 0px rgba(0, 0, 0, 0.48);
+  --drop-shadow-lg: 0px 24px 48px 0px rgba(0, 0, 0, 0.48), 0px 12px 24px 0px rgba(0, 0, 0, 0.48);
+}
+
+/* Respect OS preference when no explicit data-theme is set */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+
+    --background-bg-default: #131619;
+    --background-bg-neutral: #1d1e20;
+    --background-bg-darker-neutral: #040506;
+    --fill-default: #222325;
+    --fill-subtler-neutral: #2a2b2d;
+    --fill-subtle-neutral: #313235;
+    --fill-neutral: #939ba4;
+    --fill-global-neutral: #555b62;
+    --fill-subtler-primary: #1a2a52;
+    --fill-primary: #559cf2;
+    --fill-global-primary: #0d6bde;
+    --fill-subtler-error: #54171a;
+    --fill-error: #ff6682;
+    --fill-global-error: #da1639;
+    --fill-subtler-warning: #492b0d;
+    --fill-warning: #c28030;
+    --fill-global-warning: #b36200;
+    --fill-subtler-success: #123019;
+    --fill-success: #48ad67;
+    --fill-global-success: #247f40;
+    --fill-subtler-informative: #1a2a52;
+    --fill-informative: #559cf2;
+    --fill-global-informative: #0d6bde;
+    --fill-subtler-complementary: #59260f;
+    --fill-complementary: #ff5f0f;
+    --fill-global-complementary: #9d3b0f;
+    --fill-subtler-supplementary1: #261735;
+    --fill-supplementary1: #a66bd7;
+    --fill-global-supplementary1: #9053c2;
+    --fill-subtler-supplementary2: #002322;
+    --fill-supplementary2: #009591;
+    --fill-global-supplementary2: #007c7c;
+    --fill-global-supplementary3: #2974a8;
+    --fill-contrary-subtler-transparent: rgba(255, 255, 255, 0.04);
+    --fill-contrary-subtle-transparent: rgba(255, 255, 255, 0.1);
+    --fill-contrary-transparent: rgba(255, 255, 255, 0.33);
+    --fill-contrary-strong-transparent: rgba(255, 255, 255, 0.48);
+    --fill-blend-subtle-transparent: rgba(0, 0, 0, 0.12);
+    --fill-blend-transparent: rgba(0, 0, 0, 0.42);
+    --fill-blend-strong-transparent: rgba(0, 0, 0, 0.56);
+    --fill-global-subtle-dark-transparent: rgba(0, 0, 0, 0.12);
+    --fill-global-dark-transparent: rgba(0, 0, 0, 0.42);
+    --fill-global-strong-dark-transparent: rgba(0, 0, 0, 0.56);
+    --fill-global-subtle-light-transparent: rgba(255, 255, 255, 0.1);
+    --fill-global-light-transparent: rgba(255, 255, 255, 0.33);
+    --fill-global-strong-light-transparent: rgba(255, 255, 255, 0.48);
+    --fill-elevated-subtler: rgba(19, 22, 25, 0.8);
+    --fill-elevated-subtle: rgba(34, 35, 37, 0.8);
+    --fill-elevated-default: rgba(49, 50, 53, 0.8);
+    --fill-elevated-strong: rgba(49, 50, 53, 0.9);
+    --fill-elevated-stronger: rgba(49, 50, 53, 0.95);
+    --fill-elevated-strongest: #313235;
+    --text-neutral: #939ba4;
+    --text-strong-neutral: #dfe3e8;
+    --text-stronger-neutral: #f7f9fa;
+    --text-primary: #559cf2;
+    --text-global-primary: #0d6bde;
+    --text-alternative-primary: #75aff5;
+    --text-strong-primary: #a8ccf8;
+    --text-stronger-primary: #f2f8ff;
+    --text-error: #ff6682;
+    --text-global-error: #da1639;
+    --text-alternative-error: #f48a9e;
+    --text-strong-error: #f6aab8;
+    --text-stronger-error: #fff2f5;
+    --text-warning: #c28030;
+    --text-strong-warning: #e1bd93;
+    --text-stronger-warning: #fff9f2;
+    --text-global-strong-warning: #884b0a;
+    --text-success: #48ad67;
+    --text-strong-success: #9ecead;
+    --text-stronger-success: #f2fff6;
+    --text-informative: #559cf2;
+    --text-strong-informative: #a8ccf8;
+    --text-stronger-informative: #f2f8ff;
+    --text-complementary: #ff5f0f;
+    --text-strong-complementary: #ffab81;
+    --text-stronger-complementary: #fff7f2;
+    --text-supplementary1: #a66bd7;
+    --text-strong-supplementary1: #bb8ce0;
+    --text-stronger-supplementary1: #f7f2fb;
+    --text-supplementary2: #009591;
+    --text-strong-supplementary2: #00b2ae;
+    --text-stronger-supplementary2: #d4fcfb;
+    --icon-neutral: #8e9194;
+    --icon-strong-neutral: #dfe3e8;
+    --icon-stronger-neutral: #f7f9fa;
+    --icon-primary: #3b90f7;
+    --icon-error: #ff2638;
+    --icon-warning: #ffd700;
+    --icon-success: #09a639;
+    --icon-informative: #3b90f7;
+    --icon-complementary: #ff5500;
+    --icon-supplementary1: #864eb5;
+    --icon-supplementary2: #007573;
+    --border-subtle-neutral: #313235;
+    --border-neutral: #686f79;
+    --border-strong-neutral: #c1c6ce;
+    --border-subtle-primary: #213c77;
+    --border-primary: #0d6bde;
+    --border-strong-primary: #7ab1f4;
+    --border-subtle-error: #771d23;
+    --border-error: #da1639;
+    --border-strong-error: #f17e93;
+    --border-subtle-warning: #5d350e;
+    --border-warning: #b36200;
+    --border-strong-warning: #d19f61;
+    --border-subtle-success: #174823;
+    --border-success: #247f40;
+    --border-strong-success: #74b688;
+    --border-subtle-informative: #213c77;
+    --border-informative: #0d6bde;
+    --border-strong-informative: #7ab1f4;
+    --border-subtle-complementary: #6b2c0f;
+    --border-complementary: #cf4b0a;
+    --border-strong-complementary: #ff8548;
+    --border-subtle-supplementary1: #38214c;
+    --border-supplementary1: #864eb5;
+    --border-strong-supplementary1: #bb8ce0;
+    --border-subtle-supplementary2: #003130;
+    --border-supplementary2: #007573;
+    --border-strong-supplementary2: #00b2ae;
+    --state-subtle-neutral-hover: rgba(110, 118, 128, 0.33);
+    --state-subtle-neutral-press: rgba(0, 0, 0, 0.42);
+    --state-subtle-neutral-select: rgba(110, 118, 128, 0.33);
+    --state-neutral-hover: #b6bac0;
+    --state-neutral-press: #3e4349;
+    --state-subtle-disable: rgba(89, 96, 105, 0.25);
+    --state-disable: #596069;
+    --state-hover: rgba(255, 255, 255, 0.33);
+    --state-press: rgba(0, 0, 0, 0.42);
+    --state-inactive: rgba(0, 0, 0, 0.65);
+    --state-global-disable: #adb1b8;
+    --state-subtle-primary-hover: rgba(14, 114, 237, 0.33);
+    --state-subtle-primary-press: rgba(0, 0, 0, 0.42);
+    --state-primary-hover: #7db4f7;
+    --state-primary-press: #084085;
+    --state-subtle-primary-disable: #2b4588;
+    --state-subtle-error-hover: rgba(232, 23, 61, 0.33);
+    --state-subtle-error-press: rgba(0, 0, 0, 0.42);
+    --state-error-hover: #f38498;
+    --state-error-press: #830d23;
+    --state-subtle-error-disable: #7a383b;
+    --state-subtle-warning-hover: rgba(179, 98, 0, 0.33);
+    --state-subtle-warning-press: rgba(0, 0, 0, 0.42);
+    --state-warning-hover: #ffb459;
+    --state-warning-press: #6c3b00;
+    --state-subtle-success-hover: rgba(38, 133, 67, 0.33);
+    --state-subtle-success-press: rgba(0, 0, 0, 0.42);
+    --state-success-hover: #78d995;
+    --state-success-press: #164c26;
+    --state-subtle-informative-hover: rgba(14, 114, 237, 0.33);
+    --state-subtle-informative-press: rgba(0, 0, 0, 0.42);
+    --state-informative-hover: #7db4f7;
+    --state-informative-press: #084085;
+    --state-subtle-complementary-hover: rgba(207, 75, 10, 0.33);
+    --state-subtle-complementary-press: rgba(0, 0, 0, 0.42);
+    --state-complementary-hover: #f89f73;
+    --state-complementary-press: #7c2d06;
+    --state-subtle-supplementary1-hover: rgba(144, 83, 194, 0.33);
+    --state-subtle-supplementary1-press: rgba(0, 0, 0, 0.42);
+    --state-supplementary1-hover: #c8a9e1;
+    --state-supplementary1-press: #572c7b;
+    --state-subtle-supplementary2-hover: rgba(0, 124, 124, 0.33);
+    --state-subtle-supplementary2-press: rgba(0, 0, 0, 0.42);
+    --state-supplementary2-hover: #3effff;
+    --state-supplementary2-press: #004a4a;
+    --state-contrary-subtler-transparent-hover: rgba(255, 255, 255, 0.32);
+    --state-contrary-subtler-transparent-press: rgba(0, 0, 0, 0.48);
+    --state-contrary-subtle-transparent-hover: rgba(255, 255, 255, 0.48);
+    --state-contrary-subtle-transparent-press: rgba(0, 0, 0, 0.32);
+    --state-contrary-transparent-hover: rgba(255, 255, 255, 0.64);
+    --state-contrary-transparent-press: rgba(0, 0, 0, 0.24);
+    --state-contrary-strong-transparent-hover: rgba(255, 255, 255, 0.8);
+    --state-contrary-strong-transparent-press: rgba(0, 0, 0, 0.16);
+    --state-global-subtle-dark-transparent-hover: rgba(0, 0, 0, 0.24);
+    --state-global-subtle-dark-transparent-press: rgba(0, 0, 0, 0.48);
+    --state-global-dark-transparent-hover: rgba(0, 0, 0, 0.48);
+    --state-global-dark-transparent-press: rgba(0, 0, 0, 0.8);
+    --state-global-strong-dark-transparent-hover: rgba(0, 0, 0, 0.64);
+    --state-global-strong-dark-transparent-press: rgba(0, 0, 0, 0.96);
+    --state-global-subtle-light-transparent-hover: rgba(255, 255, 255, 0.48);
+    --state-global-subtle-light-transparent-press: rgba(0, 0, 0, 0.32);
+    --state-global-light-transparent-hover: rgba(255, 255, 255, 0.64);
+    --state-global-light-transparent-press: rgba(0, 0, 0, 0.24);
+    --state-global-strong-light-transparent-hover: rgba(255, 255, 255, 0.8);
+    --state-global-strong-light-transparent-press: rgba(0, 0, 0, 0.16);
+    --inverse-default: #131619;
+    --inverse-neutral: #1d1e20;
+    --inverse-global-default: #ffffff;
+    --underlay-dark: rgba(0, 0, 0, 0.52);
+    --underlay-default: rgba(0, 0, 0, 0.8);
+    --underlay-drop-shadow: rgba(0, 0, 0, 0.48);
+    --underlay-drop-shadow-global: rgba(0, 0, 0, 0.08);
+
+    --drop-shadow-sm: 0px 4px 8px 0px rgba(0, 0, 0, 0.48), 0px 2px 4px 0px rgba(0, 0, 0, 0.48);
+    --drop-shadow-global-sm: 0px 4px 8px 0px rgba(0, 0, 0, 0.08), 0px 2px 4px 0px rgba(0, 0, 0, 0.08);
+    --drop-shadow-md: 0px 12px 24px 0px rgba(0, 0, 0, 0.48), 0px 6px 12px 0px rgba(0, 0, 0, 0.48);
+    --drop-shadow-lg: 0px 24px 48px 0px rgba(0, 0, 0, 0.48), 0px 12px 24px 0px rgba(0, 0, 0, 0.48);
+  }
+}
+
+/* ============================================================
+   Typography helper classes (1:1 with typography.json)
+   Use these directly, or read the vars into your own selectors.
+   ============================================================ */
+.type-display {
+  font-family: var(--type-display-font-family);
+  font-weight: var(--type-display-font-weight);
+  font-size: var(--type-display-font-size);
+  line-height: var(--type-display-line-height);
+  letter-spacing: var(--type-display-letter-spacing);
+}
+
+.type-headline-1 {
+  font-family: var(--type-headline-1-font-family);
+  font-weight: var(--type-headline-1-font-weight);
+  font-size: var(--type-headline-1-font-size);
+  line-height: var(--type-headline-1-line-height);
+  letter-spacing: var(--type-headline-1-letter-spacing);
+}
+
+.type-headline-2 {
+  font-family: var(--type-headline-2-font-family);
+  font-weight: var(--type-headline-2-font-weight);
+  font-size: var(--type-headline-2-font-size);
+  line-height: var(--type-headline-2-line-height);
+  letter-spacing: var(--type-headline-2-letter-spacing);
+}
+
+.type-title-1-emphasis {
+  font-family: var(--type-title-1-emphasis-font-family);
+  font-weight: var(--type-title-1-emphasis-font-weight);
+  font-size: var(--type-title-1-emphasis-font-size);
+  line-height: var(--type-title-1-emphasis-line-height);
+  letter-spacing: var(--type-title-1-emphasis-letter-spacing);
+}
+
+.type-title-1 {
+  font-family: var(--type-title-1-font-family);
+  font-weight: var(--type-title-1-font-weight);
+  font-size: var(--type-title-1-font-size);
+  line-height: var(--type-title-1-line-height);
+  letter-spacing: var(--type-title-1-letter-spacing);
+}
+
+.type-title-2-emphasis {
+  font-family: var(--type-title-2-emphasis-font-family);
+  font-weight: var(--type-title-2-emphasis-font-weight);
+  font-size: var(--type-title-2-emphasis-font-size);
+  line-height: var(--type-title-2-emphasis-line-height);
+  letter-spacing: var(--type-title-2-emphasis-letter-spacing);
+}
+
+.type-title-2 {
+  font-family: var(--type-title-2-font-family);
+  font-weight: var(--type-title-2-font-weight);
+  font-size: var(--type-title-2-font-size);
+  line-height: var(--type-title-2-line-height);
+  letter-spacing: var(--type-title-2-letter-spacing);
+}
+
+.type-title-3-emphasis {
+  font-family: var(--type-title-3-emphasis-font-family);
+  font-weight: var(--type-title-3-emphasis-font-weight);
+  font-size: var(--type-title-3-emphasis-font-size);
+  line-height: var(--type-title-3-emphasis-line-height);
+  letter-spacing: var(--type-title-3-emphasis-letter-spacing);
+}
+
+.type-title-3 {
+  font-family: var(--type-title-3-font-family);
+  font-weight: var(--type-title-3-font-weight);
+  font-size: var(--type-title-3-font-size);
+  line-height: var(--type-title-3-line-height);
+  letter-spacing: var(--type-title-3-letter-spacing);
+}
+
+.type-body-1-emphasis {
+  font-family: var(--type-body-1-emphasis-font-family);
+  font-weight: var(--type-body-1-emphasis-font-weight);
+  font-size: var(--type-body-1-emphasis-font-size);
+  line-height: var(--type-body-1-emphasis-line-height);
+  letter-spacing: var(--type-body-1-emphasis-letter-spacing);
+}
+
+.type-body-1 {
+  font-family: var(--type-body-1-font-family);
+  font-weight: var(--type-body-1-font-weight);
+  font-size: var(--type-body-1-font-size);
+  line-height: var(--type-body-1-line-height);
+  letter-spacing: var(--type-body-1-letter-spacing);
+  margin-bottom: var(--type-body-1-paragraph-spacing); /* paragraph spacing */
+}
+
+.type-paragraph-1 {
+  font-family: var(--type-paragraph-1-font-family);
+  font-weight: var(--type-paragraph-1-font-weight);
+  font-size: var(--type-paragraph-1-font-size);
+  line-height: var(--type-paragraph-1-line-height);
+  letter-spacing: var(--type-paragraph-1-letter-spacing);
+  margin-bottom: var(--type-paragraph-1-paragraph-spacing); /* paragraph spacing */
+}
+
+.type-body-2-emphasis {
+  font-family: var(--type-body-2-emphasis-font-family);
+  font-weight: var(--type-body-2-emphasis-font-weight);
+  font-size: var(--type-body-2-emphasis-font-size);
+  line-height: var(--type-body-2-emphasis-line-height);
+  letter-spacing: var(--type-body-2-emphasis-letter-spacing);
+}
+
+.type-body-2 {
+  font-family: var(--type-body-2-font-family);
+  font-weight: var(--type-body-2-font-weight);
+  font-size: var(--type-body-2-font-size);
+  line-height: var(--type-body-2-line-height);
+  letter-spacing: var(--type-body-2-letter-spacing);
+}
+
+.type-paragraph-2 {
+  font-family: var(--type-paragraph-2-font-family);
+  font-weight: var(--type-paragraph-2-font-weight);
+  font-size: var(--type-paragraph-2-font-size);
+  line-height: var(--type-paragraph-2-line-height);
+  letter-spacing: var(--type-paragraph-2-letter-spacing);
+}
+
+.type-caption-emphasis {
+  font-family: var(--type-caption-emphasis-font-family);
+  font-weight: var(--type-caption-emphasis-font-weight);
+  font-size: var(--type-caption-emphasis-font-size);
+  line-height: var(--type-caption-emphasis-line-height);
+  letter-spacing: var(--type-caption-emphasis-letter-spacing);
+}
+
+.type-caption {
+  font-family: var(--type-caption-font-family);
+  font-weight: var(--type-caption-font-weight);
+  font-size: var(--type-caption-font-size);
+  line-height: var(--type-caption-line-height);
+  letter-spacing: var(--type-caption-letter-spacing);
+}
+
+.type-label {
+  font-family: var(--type-label-font-family);
+  font-weight: var(--type-label-font-weight);
+  font-size: var(--type-label-font-size);
+  line-height: var(--type-label-line-height);
+  letter-spacing: var(--type-label-letter-spacing);
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+html, body {
+  background: var(--background-bg-default);
+  color: var(--text-stronger-neutral);
+  font-family: var(--type-body-1-font-family);
+  font-weight: var(--type-body-1-font-weight);
+  font-size: var(--type-body-1-font-size);
+  line-height: var(--type-body-1-line-height);
+  letter-spacing: var(--type-body-1-letter-spacing);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+}
