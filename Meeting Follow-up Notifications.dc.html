@@ -27,7 +27,7 @@
       <div style="font-size:12px; line-height:16px; color:var(--text-neutral); margin-top:2px;">Notifications prototype</div>
     </div>
 
-    <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="5">
+    <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="6">
       <a onClick="{{ item.onClick }}" style="{{ item.style }}">
         <span style="{{ item.dotStyle }}"></span>
         <span style="{{ item.labelStyle }}">{{ item.label }}</span>
@@ -77,7 +77,7 @@
                   <div style="font-size:12px; color:var(--text-neutral); margin-bottom:6px;">Prompt to be sent</div>
                   <div style="border:1px solid var(--border-subtle-neutral); border-radius:12px; overflow:hidden;">
                     <div style="padding:12px 14px; font-size:13px; line-height:19px; color:var(--text-strong-neutral);">Draft a short message to Sarah Chen confirming that she owns the pricing update, and restate the two dates agreed in the meeting.</div>
-                    <div style="padding:10px 14px; border-top:1px solid var(--border-subtle-neutral); display:flex; align-items:center; justify-content:flex-end;"><a onClick="{{ openRow }}" style="display:flex; align-items:center; gap:5px; font-size:13px; font-weight:500; cursor:pointer; white-space:nowrap;"><span style="width:13px; height:13px; flex-shrink:0; background:var(--text-primary); -webkit-mask:url(icons/Edit.svg) center/contain no-repeat; mask:url(icons/Edit.svg) center/contain no-repeat;"></span>Customize prompt</a></div>
+                    <div style="padding:10px 14px; border-top:1px solid var(--border-subtle-neutral); display:flex; align-items:center; justify-content:space-between; gap:10px;"><span style="display:flex; align-items:center; gap:6px; padding:5px 10px; border:1px solid var(--border-subtle-neutral); border-radius:999px; min-width:0; overflow:hidden;"><span style="width:13px; height:13px; flex-shrink:0; background:var(--icon-neutral); -webkit-mask:url(icons/Calendar.svg) center/contain no-repeat; mask:url(icons/Calendar.svg) center/contain no-repeat;"></span><span style="font-size:12px; color:var(--text-strong-neutral); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Product Roadmap Sync</span></span><a onClick="{{ openRow }}" style="display:flex; align-items:center; gap:5px; font-size:13px; font-weight:500; cursor:pointer; white-space:nowrap; flex-shrink:0;"><span style="width:13px; height:13px; flex-shrink:0; background:var(--text-primary); -webkit-mask:url(icons/Edit.svg) center/contain no-repeat; mask:url(icons/Edit.svg) center/contain no-repeat;"></span>Customize prompt</a></div>
                   </div>
                 </div>
               </div>
@@ -94,7 +94,7 @@
                   <div style="font-size:12px; color:var(--text-neutral); margin-bottom:6px;">Prompt to be sent</div>
                   <div style="border:1px solid var(--border-subtle-neutral); border-radius:12px; overflow:hidden;">
                     <div style="padding:12px 14px; font-size:13px; line-height:19px; color:var(--text-strong-neutral);">Act as a Product Marketing Manager. Draft a thank-you message to the client team recapping the roadmap decisions, and list the three next steps with owners.</div>
-                    <div style="padding:10px 14px; border-top:1px solid var(--border-subtle-neutral); display:flex; align-items:center; justify-content:flex-end;"><a onClick="{{ openRow }}" style="display:flex; align-items:center; gap:5px; font-size:13px; font-weight:500; cursor:pointer; white-space:nowrap;"><span style="width:13px; height:13px; flex-shrink:0; background:var(--text-primary); -webkit-mask:url(icons/Edit.svg) center/contain no-repeat; mask:url(icons/Edit.svg) center/contain no-repeat;"></span>Customize prompt</a></div>
+                    <div style="padding:10px 14px; border-top:1px solid var(--border-subtle-neutral); display:flex; align-items:center; justify-content:space-between; gap:10px;"><span style="display:flex; align-items:center; gap:6px; padding:5px 10px; border:1px solid var(--border-subtle-neutral); border-radius:999px; min-width:0; overflow:hidden;"><span style="width:13px; height:13px; flex-shrink:0; background:var(--icon-neutral); -webkit-mask:url(icons/Calendar.svg) center/contain no-repeat; mask:url(icons/Calendar.svg) center/contain no-repeat;"></span><span style="font-size:12px; color:var(--text-strong-neutral); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Product Roadmap Sync</span></span><a onClick="{{ openRow }}" style="display:flex; align-items:center; gap:5px; font-size:13px; font-weight:500; cursor:pointer; white-space:nowrap; flex-shrink:0;"><span style="width:13px; height:13px; flex-shrink:0; background:var(--text-primary); -webkit-mask:url(icons/Edit.svg) center/contain no-repeat; mask:url(icons/Edit.svg) center/contain no-repeat;"></span>Customize prompt</a></div>
                   </div>
                 </div>
               </div>
@@ -392,13 +392,20 @@
               </span>
               <button onClick="{{ openResult }}" style="height:34px; padding:0 14px; border-radius:999px; border:none; background:var(--fill-subtle-neutral); color:var(--text-stronger-neutral); font-size:13px; font-weight:500; font-family:inherit; cursor:pointer; flex-shrink:0;">View result</button>
             </div>
-            <div style="border:1px solid var(--border-subtle-neutral); border-radius:14px; overflow:hidden;">
-              <div style="padding:14px; display:flex; align-items:center; gap:10px;"><span style="width:16px; height:16px; flex-shrink:0; background:var(--icon-primary); -webkit-mask:url(icons/ZoomDocs.svg) center/contain no-repeat; mask:url(icons/ZoomDocs.svg) center/contain no-repeat;"></span><span style="font-size:14px; font-weight:500; color:var(--text-stronger-neutral);">Product Roadmap Sync — launch recap</span></div>
-              <div style="padding:10px 14px; border-top:1px solid var(--border-subtle-neutral); display:flex; align-items:center; gap:8px; flex-wrap:wrap;"><button onClick="{{ openDoc }}" style="height:34px; padding:0 14px; border-radius:999px; border:none; background:var(--fill-global-primary); color:#fff; font-size:13px; font-weight:500; font-family:inherit; cursor:pointer; display:flex; align-items:center; gap:6px; flex-shrink:0;"><span style="width:14px; height:14px; flex-shrink:0; background:#fff; -webkit-mask:url(icons/ZoomDocs.svg) center/contain no-repeat; mask:url(icons/ZoomDocs.svg) center/contain no-repeat;"></span>Open doc</button></div>
-            </div>
-            <div style="border:1px solid var(--border-subtle-neutral); border-radius:14px; overflow:hidden;">
-              <div style="padding:14px; display:flex; align-items:center; gap:10px;"><span style="width:16px; height:16px; flex-shrink:0; background:var(--icon-success); -webkit-mask:url(icons/File.svg) center/contain no-repeat; mask:url(icons/File.svg) center/contain no-repeat;"></span><span style="font-size:14px; font-weight:500; color:var(--text-stronger-neutral);">Q3 budget breakdown — sheet</span></div>
-              <div style="padding:10px 14px; border-top:1px solid var(--border-subtle-neutral); display:flex; align-items:center; gap:8px; flex-wrap:wrap;"><button onClick="{{ openSheet }}" style="height:34px; padding:0 14px; border-radius:999px; border:none; background:var(--fill-global-primary); color:#fff; font-size:13px; font-weight:500; font-family:inherit; cursor:pointer; display:flex; align-items:center; gap:6px; flex-shrink:0;"><span style="width:14px; height:14px; flex-shrink:0; background:#fff; -webkit-mask:url(icons/File.svg) center/contain no-repeat; mask:url(icons/File.svg) center/contain no-repeat;"></span>Open sheet</button></div>
+            <div style="border:1px solid var(--border-subtle-neutral); border-radius:14px; padding:14px 16px; display:flex; flex-direction:column; gap:10px;">
+              <div style="font-size:13px; color:var(--text-neutral);">Output from this task</div>
+              <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <a onClick="{{ openDoc }}" style="flex:1; min-width:180px; display:flex; align-items:center; gap:10px; border:1px solid var(--border-subtle-neutral); border-radius:12px; padding:12px; cursor:pointer;">
+                  <span style="width:20px; height:20px; flex-shrink:0; background:var(--icon-primary); -webkit-mask:url(icons/ZoomDocs.svg) center/contain no-repeat; mask:url(icons/ZoomDocs.svg) center/contain no-repeat;"></span>
+                  <span style="flex:1; min-width:0; font-size:14px; font-weight:500; color:var(--text-stronger-neutral);">Product Roadmap Sync — launch recap</span>
+                  <span style="width:16px; height:16px; flex-shrink:0; background:var(--icon-neutral); -webkit-mask:url(icons/ChevronRight.svg) center/contain no-repeat; mask:url(icons/ChevronRight.svg) center/contain no-repeat;"></span>
+                </a>
+                <a onClick="{{ openSheet }}" style="flex:1; min-width:180px; display:flex; align-items:center; gap:10px; border:1px solid var(--border-subtle-neutral); border-radius:12px; padding:12px; cursor:pointer;">
+                  <span style="width:20px; height:20px; flex-shrink:0; background:var(--icon-success); -webkit-mask:url(icons/File.svg) center/contain no-repeat; mask:url(icons/File.svg) center/contain no-repeat;"></span>
+                  <span style="flex:1; min-width:0; font-size:14px; font-weight:500; color:var(--text-stronger-neutral);">Q3 budget breakdown — sheet</span>
+                  <span style="width:16px; height:16px; flex-shrink:0; background:var(--icon-neutral); -webkit-mask:url(icons/ChevronRight.svg) center/contain no-repeat; mask:url(icons/ChevronRight.svg) center/contain no-repeat;"></span>
+                </a>
+              </div>
             </div>
         </div>
         </div>
@@ -470,6 +477,275 @@
               <button onClick="{{ openDetails }}" style="height:36px; padding:0 18px; border-radius:12px; border:none; background:var(--fill-global-primary); color:#fff; font-size:14px; font-weight:500; font-family:inherit; cursor:pointer;">View details</button>
             </div>
           </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- ================= ZOOM CHAT ================= -->
+    <sc-if value="{{ isChat }}" hint-placeholder-val="{{ false }}">
+      <div style="max-width:720px; margin:0 auto; padding:36px 32px 96px; display:flex; flex-direction:column; gap:20px;">
+        <div>
+          <div style="font-size:20px; font-weight:600; line-height:26px; color:var(--text-stronger-neutral);">Zoom Chat</div>
+          <div style="font-size:14px; line-height:20px; color:var(--text-neutral); margin-top:4px;">The ZoomMate bot in Zoom Team Chat — already shipped for the three base message types (New task detected, Completed, Need Clarification). This tab adds Workflow's states and shows what ships next. Slack and Microsoft Teams reuse this same set of cases, re-expressed in each platform's own card syntax — see the note below.</div>
+        </div>
+
+        <div style="background:var(--background-bg-default); border-radius:16px; flex-shrink:0; box-shadow:var(--drop-shadow-sm); padding:18px 20px; display:flex; flex-direction:column; gap:10px;">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span style="width:15px; height:15px; flex-shrink:0; background:var(--icon-neutral); -webkit-mask:url(icons/Chatbot.svg) center/contain no-repeat; mask:url(icons/Chatbot.svg) center/contain no-repeat;"></span>
+            <span style="font-size:14px; font-weight:500; color:var(--text-stronger-neutral);">Why this reads differently from the email tab</span>
+          </div>
+          <div style="font-size:13px; line-height:19px; color:var(--text-strong-neutral);">Chat isn't static like email — the bot's buttons call back to a server, so <strong>Copy</strong> and <strong>jump-to-chat</strong> both actually work here, and a card can update itself in place after a click instead of going stale. That's why Copy, removed from the email tab, is back on every card below.</div>
+          <div style="font-size:13px; line-height:19px; color:var(--text-strong-neutral);">One hard constraint from the bot platforms: every actionable button must sit at the card's top level. There's no hidden menu, no nested layer, no nested "show more" behind which a button can live — show more/less may only hide <em>text</em>, never a button. Multiple recipients still split into separate messages, never one card with two blocks, same rule as email.</div>
+        </div>
+
+        <!-- New Task Detected -->
+        <div>
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+            <span style="width:28px; height:28px; border-radius:50%; background:var(--fill-subtler-primary); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><span style="width:16px; height:16px; flex-shrink:0; background:var(--icon-primary); -webkit-mask:url(icons/AICompanion.svg) center/contain no-repeat; mask:url(icons/AICompanion.svg) center/contain no-repeat;"></span></span>
+            <span style="font-size:13px; font-weight:600; color:var(--text-stronger-neutral);">ZoomMate</span>
+            <span style="font-size:12px; color:var(--text-neutral);">2:40 PM</span>
+          </div>
+          <div style="margin-left:36px; border:1px solid var(--border-subtle-neutral); border-radius:12px; background:var(--background-bg-default); box-shadow:var(--drop-shadow-sm); padding:16px; display:flex; flex-direction:column; gap:14px;">
+            <div style="font-size:15px; font-weight:600; line-height:20px; color:var(--text-stronger-neutral);">Product Roadmap Sync: 4 follow-ups waiting for you</div>
+            <div style="font-size:13px; line-height:19px; color:var(--text-strong-neutral);">Here&rsquo;s what came out of your meeting — one click, and ZoomMate takes care of it.</div>
+            <div style="display:flex; flex-direction:column; gap:8px;">
+              <div style="display:flex; align-items:center; gap:10px; padding:8px 0; border-top:1px solid var(--border-subtle-neutral);">
+                <span style="width:30px; height:30px; border-radius:999px; background:var(--fill-subtler-primary); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><span style="width:15px; height:15px; flex-shrink:0; background:var(--icon-primary); -webkit-mask:url(icons/Tasks.svg) center/contain no-repeat; mask:url(icons/Tasks.svg) center/contain no-repeat;"></span></span>
+                <span style="flex:1; font-size:13px; font-weight:500; color:var(--text-stronger-neutral);">Confirm the pricing update owner with Sarah Chen</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:10px; padding:8px 0; border-top:1px solid var(--border-subtle-neutral);">
+                <span style="width:30px; height:30px; border-radius:999px; background:var(--fill-subtler-supplementary1); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><span style="width:15px; height:15px; flex-shrink:0; background:var(--icon-supplementary1); -webkit-mask:url(icons/Chat.svg) center/contain no-repeat; mask:url(icons/Chat.svg) center/contain no-repeat;"></span></span>
+                <span style="flex:1; font-size:13px; font-weight:500; color:var(--text-stronger-neutral);">Send the client a thank-you message with next steps</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:10px; padding:8px 0; border-top:1px solid var(--border-subtle-neutral);">
+                <span style="width:30px; height:30px; border-radius:999px; background:var(--fill-subtle-neutral); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><img src="icons/GoogleDocs.svg" width="15" height="15" alt=""/></span>
+                <span style="flex:1; font-size:13px; font-weight:500; color:var(--text-stronger-neutral);">Meeting Summary to Google Docs</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:10px; padding:8px 0; border-top:1px solid var(--border-subtle-neutral);">
+                <span style="width:30px; height:30px; border-radius:999px; background:var(--fill-subtle-neutral); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><img src="icons/GoogleDrive.svg" width="15" height="15" alt=""/></span>
+                <span style="flex:1; font-size:13px; font-weight:500; color:var(--text-stronger-neutral);">Save meeting notes to a shared Drive folder</span>
+              </div>
+            </div>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              <button onClick="{{ openPanel }}" style="height:34px; padding:0 16px; border-radius:999px; border:none; background:var(--fill-global-primary); color:#fff; font-size:13px; font-weight:500; font-family:inherit; cursor:pointer;">Get Started</button>
+              <button onClick="{{ openRunAll }}" style="height:34px; padding:0 16px; border-radius:999px; border:1px solid var(--border-subtle-neutral); background:var(--background-bg-default); color:var(--text-stronger-neutral); font-size:13px; font-weight:500; font-family:inherit; cursor:pointer;">Run All</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Need Clarification -->
+        <div>
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+            <span style="width:28px; height:28px; border-radius:50%; background:var(--fill-subtler-primary); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><span style="width:16px; height:16px; flex-shrink:0; background:var(--icon-primary); -webkit-mask:url(icons/AICompanion.svg) center/contain no-repeat; mask:url(icons/AICompanion.svg) center/contain no-repeat;"></span></span>
+            <span style="font-size:13px; font-weight:600; color:var(--text-stronger-neutral);">ZoomMate</span>
+            <span style="font-size:12px; color:var(--text-neutral);">2:44 PM</span>
+          </div>
+          <div style="margin-left:36px; border:1px solid var(--border-subtle-neutral); border-radius:12px; background:var(--background-bg-default); box-shadow:var(--drop-shadow-sm); padding:16px; display:flex; flex-direction:column; gap:14px;">
+            <div style="font-size:15px; font-weight:600; line-height:20px; color:var(--text-stronger-neutral);">Who should get this message?</div>
+            <div style="font-size:13px; line-height:19px; color:var(--text-strong-neutral);">Found 3 people named &ldquo;Tim&rdquo; from the meeting invite. Pick the right one before ZoomMate sends anything.</div>
+            <div style="display:flex; flex-direction:column; gap:8px;">
+              <label style="display:flex; align-items:center; gap:9px; padding:9px 12px; border:1px solid var(--border-primary); border-radius:10px; background:var(--fill-subtler-primary); cursor:pointer;">
+                <span style="width:15px; height:15px; border-radius:50%; flex-shrink:0; border:4.5px solid var(--fill-primary); background:#fff;"></span>
+                <span style="font-size:13px; line-height:18px; color:var(--text-stronger-neutral);">Tim Chen — Product, on the invite</span>
+              </label>
+              <label style="display:flex; align-items:center; gap:9px; padding:9px 12px; border:1px solid var(--border-subtle-neutral); border-radius:10px; background:var(--background-bg-default); cursor:pointer;">
+                <span style="width:15px; height:15px; border-radius:50%; flex-shrink:0; border:1.5px solid var(--border-neutral); background:#fff;"></span>
+                <span style="font-size:13px; line-height:18px; color:var(--text-stronger-neutral);">Tim O&rsquo;Brien — Engineering</span>
+              </label>
+              <label style="display:flex; align-items:center; gap:9px; padding:9px 12px; border:1px solid var(--border-subtle-neutral); border-radius:10px; background:var(--background-bg-default); cursor:pointer;">
+                <span style="width:15px; height:15px; border-radius:50%; flex-shrink:0; border:1.5px solid var(--border-neutral); background:#fff;"></span>
+                <span style="font-size:13px; line-height:18px; color:var(--text-stronger-neutral);">Tim Wu — Sales</span>
+              </label>
+            </div>
+            <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+              <button onClick="{{ openConfirm }}" style="height:34px; padding:0 16px; border-radius:999px; border:none; background:var(--fill-global-primary); color:#fff; font-size:13px; font-weight:500; font-family:inherit; cursor:pointer;">Confirm</button>
+              <a onClick="{{ openRow }}" style="font-size:13px; font-weight:500; color:var(--text-primary); cursor:pointer;">Open in Follow-ups</a>
+            </div>
+            <div style="font-size:11.5px; line-height:15px; color:var(--text-neutral);">Inline answer updates this same card. Jump to Follow-ups stays as the fallback if the picker isn&rsquo;t enough.</div>
+          </div>
+        </div>
+
+        <!-- Completed: message, known recipient -->
+        <div>
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+            <span style="width:28px; height:28px; border-radius:50%; background:var(--fill-subtler-primary); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><span style="width:16px; height:16px; flex-shrink:0; background:var(--icon-primary); -webkit-mask:url(icons/AICompanion.svg) center/contain no-repeat; mask:url(icons/AICompanion.svg) center/contain no-repeat;"></span></span>
+            <span style="font-size:13px; font-weight:600; color:var(--text-stronger-neutral);">ZoomMate</span>
+            <span style="font-size:12px; color:var(--text-neutral);">2:58 PM</span>
+          </div>
+          <div style="margin-left:36px; border:1px solid var(--border-subtle-neutral); border-radius:12px; background:var(--background-bg-default); box-shadow:var(--drop-shadow-sm); padding:16px; display:flex; flex-direction:column; gap:14px;">
+            <div style="font-size:15px; font-weight:600; line-height:20px; color:var(--text-stronger-neutral);">Your message to Sarah Chen is ready</div>
+            <div style="font-size:13px; line-height:19px; color:var(--text-strong-neutral);">Confirms Sarah Chen as the owner of the pricing update and restates the two dates agreed in the meeting. Nothing was sent yet.</div>
+            <div style="border:1px solid var(--border-subtle-neutral); border-radius:10px; padding:12px; font-size:13px; line-height:19px; color:var(--text-stronger-neutral);">Hi Sarah — quick recap from today: you&rsquo;re owning the pricing revamp, with the draft model due Aug 8 and the partner API scoping review on Aug 14. Shout if either date needs to move.</div>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              <button onClick="{{ openChat }}" style="height:34px; padding:0 16px; border-radius:999px; border:none; background:var(--fill-global-primary); color:#fff; font-size:13px; font-weight:500; font-family:inherit; cursor:pointer; display:flex; align-items:center; gap:6px;"><span style="width:14px; height:14px; flex-shrink:0; background:#fff; -webkit-mask:url(icons/Chat.svg) center/contain no-repeat; mask:url(icons/Chat.svg) center/contain no-repeat;"></span>Open chat with Sarah Chen</button>
+              <button onClick="{{ openCopy }}" style="height:34px; padding:0 16px; border-radius:999px; border:1px solid var(--border-subtle-neutral); background:var(--background-bg-default); color:var(--text-stronger-neutral); font-size:13px; font-weight:500; font-family:inherit; cursor:pointer; display:flex; align-items:center; gap:6px;"><span style="width:14px; height:14px; flex-shrink:0; background:var(--icon-strong-neutral); -webkit-mask:url(icons/Copy.svg) center/contain no-repeat; mask:url(icons/Copy.svg) center/contain no-repeat;"></span>Copy</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Completed: message, recipient unclear -->
+        <div>
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+            <span style="width:28px; height:28px; border-radius:50%; background:var(--fill-subtler-primary); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><span style="width:16px; height:16px; flex-shrink:0; background:var(--icon-primary); -webkit-mask:url(icons/AICompanion.svg) center/contain no-repeat; mask:url(icons/AICompanion.svg) center/contain no-repeat;"></span></span>
+            <span style="font-size:13px; font-weight:600; color:var(--text-stronger-neutral);">ZoomMate</span>
+            <span style="font-size:12px; color:var(--text-neutral);">2:59 PM</span>
+          </div>
+          <div style="margin-left:36px; border:1px solid var(--border-subtle-neutral); border-radius:12px; background:var(--background-bg-default); box-shadow:var(--drop-shadow-sm); padding:16px; display:flex; flex-direction:column; gap:14px;">
+            <div style="font-size:15px; font-weight:600; line-height:20px; color:var(--text-stronger-neutral);">Your message is ready — pick who to send it to</div>
+            <div style="font-size:13px; line-height:19px; color:var(--text-strong-neutral);">ZoomMate couldn&rsquo;t match a recipient for this one, so it won&rsquo;t guess.</div>
+            <div style="border:1px solid var(--border-subtle-neutral); border-radius:10px; padding:12px; font-size:13px; line-height:19px; color:var(--text-stronger-neutral);">Thanks for the session today. We locked the three bets for Q3 — pricing revamp, onboarding rebuild, partner API — and I&rsquo;ll send the dated plan by Friday.</div>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              <button onClick="{{ openPicker }}" style="height:34px; padding:0 16px; border-radius:999px; border:none; background:var(--fill-global-primary); color:#fff; font-size:13px; font-weight:500; font-family:inherit; cursor:pointer; display:flex; align-items:center; gap:6px;"><span style="width:14px; height:14px; flex-shrink:0; background:#fff; -webkit-mask:url(icons/Search.svg) center/contain no-repeat; mask:url(icons/Search.svg) center/contain no-repeat;"></span>Choose which chat to open</button>
+              <button onClick="{{ openCopy }}" style="height:34px; padding:0 16px; border-radius:999px; border:1px solid var(--border-subtle-neutral); background:var(--background-bg-default); color:var(--text-stronger-neutral); font-size:13px; font-weight:500; font-family:inherit; cursor:pointer; display:flex; align-items:center; gap:6px;"><span style="width:14px; height:14px; flex-shrink:0; background:var(--icon-strong-neutral); -webkit-mask:url(icons/Copy.svg) center/contain no-repeat; mask:url(icons/Copy.svg) center/contain no-repeat;"></span>Copy</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Completed: two recipients — two separate cards, not one card with two blocks -->
+        <div>
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+            <span style="width:28px; height:28px; border-radius:50%; background:var(--fill-subtler-primary); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><span style="width:16px; height:16px; flex-shrink:0; background:var(--icon-primary); -webkit-mask:url(icons/AICompanion.svg) center/contain no-repeat; mask:url(icons/AICompanion.svg) center/contain no-repeat;"></span></span>
+            <span style="font-size:13px; font-weight:600; color:var(--text-stronger-neutral);">ZoomMate</span>
+            <span style="font-size:12px; color:var(--text-neutral);">3:01 PM</span>
+          </div>
+          <div style="margin-left:36px; border:1px solid var(--border-subtle-neutral); border-radius:12px; background:var(--background-bg-default); box-shadow:var(--drop-shadow-sm); padding:16px; display:flex; flex-direction:column; gap:14px;">
+            <div style="font-size:15px; font-weight:600; line-height:20px; color:var(--text-stronger-neutral);">Message 1 of 2 is ready — for Sarah Chen</div>
+            <div style="font-size:13px; line-height:19px; color:var(--text-strong-neutral);">The task named two people — this is the message for Sarah. Marcus gets his own separate message next; ZoomMate never groups them.</div>
+            <div style="border:1px solid var(--border-subtle-neutral); border-radius:10px; padding:12px; font-size:13px; line-height:19px; color:var(--text-stronger-neutral);">Sarah — confirming the pricing draft lands Aug 8 and you&rsquo;re the owner. I&rsquo;ll pull the numbers from last quarter for you.</div>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              <button onClick="{{ openChat }}" style="height:34px; padding:0 16px; border-radius:999px; border:none; background:var(--fill-global-primary); color:#fff; font-size:13px; font-weight:500; font-family:inherit; cursor:pointer; display:flex; align-items:center; gap:6px;"><span style="width:14px; height:14px; flex-shrink:0; background:#fff; -webkit-mask:url(icons/Chat.svg) center/contain no-repeat; mask:url(icons/Chat.svg) center/contain no-repeat;"></span>Open chat with Sarah Chen</button>
+              <button onClick="{{ openCopy }}" style="height:34px; padding:0 16px; border-radius:999px; border:1px solid var(--border-subtle-neutral); background:var(--background-bg-default); color:var(--text-stronger-neutral); font-size:13px; font-weight:500; font-family:inherit; cursor:pointer; display:flex; align-items:center; gap:6px;"><span style="width:14px; height:14px; flex-shrink:0; background:var(--icon-strong-neutral); -webkit-mask:url(icons/Copy.svg) center/contain no-repeat; mask:url(icons/Copy.svg) center/contain no-repeat;"></span>Copy</button>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+            <span style="width:28px; height:28px; border-radius:50%; background:var(--fill-subtler-primary); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><span style="width:16px; height:16px; flex-shrink:0; background:var(--icon-primary); -webkit-mask:url(icons/AICompanion.svg) center/contain no-repeat; mask:url(icons/AICompanion.svg) center/contain no-repeat;"></span></span>
+            <span style="font-size:13px; font-weight:600; color:var(--text-stronger-neutral);">ZoomMate</span>
+            <span style="font-size:12px; color:var(--text-neutral);">3:01 PM</span>
+          </div>
+          <div style="margin-left:36px; border:1px solid var(--border-subtle-neutral); border-radius:12px; background:var(--background-bg-default); box-shadow:var(--drop-shadow-sm); padding:16px; display:flex; flex-direction:column; gap:14px;">
+            <div style="font-size:15px; font-weight:600; line-height:20px; color:var(--text-stronger-neutral);">Message 2 of 2 is ready — for Marcus Webb</div>
+            <div style="border:1px solid var(--border-subtle-neutral); border-radius:10px; padding:12px; font-size:13px; line-height:19px; color:var(--text-stronger-neutral);">Marcus — partner API scoping review is on Aug 14. Can you have the endpoint list ready the day before?</div>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              <button onClick="{{ openChat }}" style="height:34px; padding:0 16px; border-radius:999px; border:none; background:var(--fill-global-primary); color:#fff; font-size:13px; font-weight:500; font-family:inherit; cursor:pointer; display:flex; align-items:center; gap:6px;"><span style="width:14px; height:14px; flex-shrink:0; background:#fff; -webkit-mask:url(icons/Chat.svg) center/contain no-repeat; mask:url(icons/Chat.svg) center/contain no-repeat;"></span>Open chat with Marcus Webb</button>
+              <button onClick="{{ openCopy }}" style="height:34px; padding:0 16px; border-radius:999px; border:1px solid var(--border-subtle-neutral); background:var(--background-bg-default); color:var(--text-stronger-neutral); font-size:13px; font-weight:500; font-family:inherit; cursor:pointer; display:flex; align-items:center; gap:6px;"><span style="width:14px; height:14px; flex-shrink:0; background:var(--icon-strong-neutral); -webkit-mask:url(icons/Copy.svg) center/contain no-repeat; mask:url(icons/Copy.svg) center/contain no-repeat;"></span>Copy</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Completed: email -->
+        <div>
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+            <span style="width:28px; height:28px; border-radius:50%; background:var(--fill-subtler-primary); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><span style="width:16px; height:16px; flex-shrink:0; background:var(--icon-primary); -webkit-mask:url(icons/AICompanion.svg) center/contain no-repeat; mask:url(icons/AICompanion.svg) center/contain no-repeat;"></span></span>
+            <span style="font-size:13px; font-weight:600; color:var(--text-stronger-neutral);">ZoomMate</span>
+            <span style="font-size:12px; color:var(--text-neutral);">3:04 PM</span>
+          </div>
+          <div style="margin-left:36px; border:1px solid var(--border-subtle-neutral); border-radius:12px; background:var(--background-bg-default); box-shadow:var(--drop-shadow-sm); padding:16px; display:flex; flex-direction:column; gap:14px;">
+            <div style="font-size:15px; font-weight:600; line-height:20px; color:var(--text-stronger-neutral);">Your recap email to the Design team is ready</div>
+            <div style="font-size:13px; line-height:19px; color:var(--text-strong-neutral);">Recipients, subject, and body are pre-filled. Nothing was sent — open it in Mail to edit and send.</div>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              <button onClick="{{ openEmail }}" style="height:34px; padding:0 16px; border-radius:999px; border:none; background:var(--fill-global-primary); color:#fff; font-size:13px; font-weight:500; font-family:inherit; cursor:pointer; display:flex; align-items:center; gap:6px;"><span style="width:14px; height:14px; flex-shrink:0; background:#fff; -webkit-mask:url(icons/Email.svg) center/contain no-repeat; mask:url(icons/Email.svg) center/contain no-repeat;"></span>Open in Mail</button>
+              <button onClick="{{ openCopy }}" style="height:34px; padding:0 16px; border-radius:999px; border:1px solid var(--border-subtle-neutral); background:var(--background-bg-default); color:var(--text-stronger-neutral); font-size:13px; font-weight:500; font-family:inherit; cursor:pointer; display:flex; align-items:center; gap:6px;"><span style="width:14px; height:14px; flex-shrink:0; background:var(--icon-strong-neutral); -webkit-mask:url(icons/Copy.svg) center/contain no-repeat; mask:url(icons/Copy.svg) center/contain no-repeat;"></span>Copy</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Completed: doc asset embedded in the message -->
+        <div>
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+            <span style="width:28px; height:28px; border-radius:50%; background:var(--fill-subtler-primary); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><span style="width:16px; height:16px; flex-shrink:0; background:var(--icon-primary); -webkit-mask:url(icons/AICompanion.svg) center/contain no-repeat; mask:url(icons/AICompanion.svg) center/contain no-repeat;"></span></span>
+            <span style="font-size:13px; font-weight:600; color:var(--text-stronger-neutral);">ZoomMate</span>
+            <span style="font-size:12px; color:var(--text-neutral);">3:06 PM</span>
+          </div>
+          <div style="margin-left:36px; border:1px solid var(--border-subtle-neutral); border-radius:12px; background:var(--background-bg-default); box-shadow:var(--drop-shadow-sm); padding:16px; display:flex; flex-direction:column; gap:14px;">
+            <div style="font-size:15px; font-weight:600; line-height:20px; color:var(--text-stronger-neutral);">Your meeting summary doc is ready</div>
+            <div style="font-size:13px; line-height:19px; color:var(--text-strong-neutral);">Decisions, owners, and action items written up as a document and saved to your notes. The asset sits right in this message — no separate link-only card.</div>
+            <div style="border:1px solid var(--border-subtle-neutral); border-radius:10px; padding:12px; display:flex; align-items:center; gap:10px;">
+              <span style="width:16px; height:16px; flex-shrink:0; background:var(--icon-primary); -webkit-mask:url(icons/ZoomDocs.svg) center/contain no-repeat; mask:url(icons/ZoomDocs.svg) center/contain no-repeat;"></span>
+              <span style="font-size:13px; font-weight:500; color:var(--text-stronger-neutral);">Product Roadmap Sync — summary</span>
+            </div>
+            <div>
+              <button onClick="{{ openDoc }}" style="height:34px; padding:0 16px; border-radius:999px; border:none; background:var(--fill-global-primary); color:#fff; font-size:13px; font-weight:500; font-family:inherit; cursor:pointer; display:flex; align-items:center; gap:6px;"><span style="width:14px; height:14px; flex-shrink:0; background:#fff; -webkit-mask:url(icons/ZoomDocs.svg) center/contain no-repeat; mask:url(icons/ZoomDocs.svg) center/contain no-repeat;"></span>Open Docs</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Error -->
+        <div>
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+            <span style="width:28px; height:28px; border-radius:50%; background:var(--fill-subtler-primary); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><span style="width:16px; height:16px; flex-shrink:0; background:var(--icon-primary); -webkit-mask:url(icons/AICompanion.svg) center/contain no-repeat; mask:url(icons/AICompanion.svg) center/contain no-repeat;"></span></span>
+            <span style="font-size:13px; font-weight:600; color:var(--text-stronger-neutral);">ZoomMate</span>
+            <span style="font-size:12px; color:var(--text-neutral);">3:05 PM</span>
+          </div>
+          <div style="margin-left:36px; border:1px solid var(--border-subtle-neutral); border-radius:12px; background:var(--background-bg-default); box-shadow:var(--drop-shadow-sm); padding:16px; display:flex; flex-direction:column; gap:14px;">
+            <div style="font-size:15px; font-weight:600; line-height:20px; color:var(--text-error);">&#10071; Needs attention: &ldquo;Send recap email&rdquo; hit an error</div>
+            <div style="font-size:13px; line-height:19px; color:var(--text-strong-neutral);">The recipient address for the Design team couldn&rsquo;t be resolved, so nothing was sent.</div>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              <button onClick="{{ openDetails }}" style="height:34px; padding:0 16px; border-radius:999px; border:none; background:var(--fill-global-primary); color:#fff; font-size:13px; font-weight:500; font-family:inherit; cursor:pointer;">View Details</button>
+              <button onClick="{{ openRetry }}" style="height:34px; padding:0 16px; border-radius:999px; border:1px solid var(--border-subtle-neutral); background:var(--background-bg-default); color:var(--text-stronger-neutral); font-size:13px; font-weight:500; font-family:inherit; cursor:pointer;">Retry</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="font-size:13px; line-height:18px; color:var(--text-neutral); margin:8px 0 0 2px;">Workflow — new this period</div>
+
+        <!-- Workflow: Pending Review -->
+        <div>
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+            <span style="width:28px; height:28px; border-radius:50%; background:var(--fill-subtler-warning); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><img src="icons/StatusWarning.svg" width="16" height="16" alt=""/></span>
+            <span style="font-size:13px; font-weight:600; color:var(--text-stronger-neutral);">ZoomMate</span>
+            <span style="font-size:12px; color:var(--text-neutral);">3:12 PM</span>
+          </div>
+          <div style="margin-left:36px; border:1px solid var(--border-subtle-neutral); border-radius:12px; background:var(--background-bg-default); box-shadow:var(--drop-shadow-sm); padding:16px; display:flex; flex-direction:column; gap:14px;">
+            <div style="font-size:15px; font-weight:600; line-height:20px; color:var(--text-stronger-neutral);">Update Salesforce opportunity needs your review</div>
+            <div style="font-size:13px; line-height:19px; color:var(--text-strong-neutral);">This node is set to Always Ask, so the workflow is paused until you decide. These four actions are fixed by the Workflow team — the same set regardless of task type.</div>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              <button onClick="{{ openApprove }}" style="height:34px; padding:0 16px; border-radius:999px; border:none; background:var(--fill-global-primary); color:#fff; font-size:13px; font-weight:500; font-family:inherit; cursor:pointer;">Approve &amp; continue</button>
+              <button onClick="{{ openAllowOnce }}" style="height:34px; padding:0 14px; border-radius:999px; border:1px solid var(--border-subtle-neutral); background:var(--background-bg-default); color:var(--text-stronger-neutral); font-size:13px; font-weight:500; font-family:inherit; cursor:pointer;">Allow once</button>
+              <button onClick="{{ openAllowAlways }}" style="height:34px; padding:0 14px; border-radius:999px; border:1px solid var(--border-subtle-neutral); background:var(--background-bg-default); color:var(--text-stronger-neutral); font-size:13px; font-weight:500; font-family:inherit; cursor:pointer;">Always</button>
+              <button onClick="{{ openCancelWorkflow }}" style="height:34px; padding:0 14px; border-radius:999px; border:1px solid var(--border-subtle-neutral); background:var(--background-bg-default); color:var(--text-error); font-size:13px; font-weight:500; font-family:inherit; cursor:pointer;">Cancel workflow</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Workflow: Completed -->
+        <div>
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+            <span style="width:28px; height:28px; border-radius:50%; background:var(--fill-subtler-success); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><span style="width:16px; height:16px; flex-shrink:0; background:var(--icon-success); -webkit-mask:url(icons/ZoomDocs.svg) center/contain no-repeat; mask:url(icons/ZoomDocs.svg) center/contain no-repeat;"></span></span>
+            <span style="font-size:13px; font-weight:600; color:var(--text-stronger-neutral);">ZoomMate</span>
+            <span style="font-size:12px; color:var(--text-neutral);">3:20 PM</span>
+          </div>
+          <div style="margin-left:36px; border:1px solid var(--border-subtle-neutral); border-radius:12px; background:var(--background-bg-default); box-shadow:var(--drop-shadow-sm); padding:16px; display:flex; flex-direction:column; gap:14px;">
+            <div style="font-size:15px; font-weight:600; line-height:20px; color:var(--text-stronger-neutral);">Sync meeting notes to Notion is done</div>
+            <div style="font-size:13px; line-height:19px; color:var(--text-strong-neutral);">Notes synced to the Notion workspace — 12 action items created. <span style="color:var(--text-neutral);">(payload.summary)</span></div>
+            <div>
+              <button onClick="{{ openPanel }}" style="height:34px; padding:0 16px; border-radius:999px; border:none; background:var(--fill-global-primary); color:#fff; font-size:13px; font-weight:500; font-family:inherit; cursor:pointer;">Open in Follow-up</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Workflow: Error -->
+        <div>
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+            <span style="width:28px; height:28px; border-radius:50%; background:var(--fill-subtler-primary); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><span style="width:16px; height:16px; flex-shrink:0; background:var(--icon-primary); -webkit-mask:url(icons/AICompanion.svg) center/contain no-repeat; mask:url(icons/AICompanion.svg) center/contain no-repeat;"></span></span>
+            <span style="font-size:13px; font-weight:600; color:var(--text-stronger-neutral);">ZoomMate</span>
+            <span style="font-size:12px; color:var(--text-neutral);">3:27 PM</span>
+          </div>
+          <div style="margin-left:36px; border:1px solid var(--border-subtle-neutral); border-radius:12px; background:var(--background-bg-default); box-shadow:var(--drop-shadow-sm); padding:16px; display:flex; flex-direction:column; gap:14px;">
+            <div style="font-size:15px; font-weight:600; line-height:20px; color:var(--text-error);">&#10071; Needs attention: &ldquo;Create Jira tickets&rdquo; hit an error</div>
+            <div style="font-size:13px; line-height:19px; color:var(--text-strong-neutral);">Jira project permissions error — issues can&rsquo;t be created in project ENG. <span style="color:var(--text-neutral);">(payload.errorReason)</span></div>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              <button onClick="{{ openDetails }}" style="height:34px; padding:0 16px; border-radius:999px; border:none; background:var(--fill-global-primary); color:#fff; font-size:13px; font-weight:500; font-family:inherit; cursor:pointer;">View Details</button>
+              <button onClick="{{ openRetry }}" style="height:34px; padding:0 16px; border-radius:999px; border:1px solid var(--border-subtle-neutral); background:var(--background-bg-default); color:var(--text-stronger-neutral); font-size:13px; font-weight:500; font-family:inherit; cursor:pointer;">Retry</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:var(--background-bg-default); border-radius:16px; flex-shrink:0; box-shadow:var(--drop-shadow-sm); padding:18px 20px; display:flex; flex-direction:column; gap:8px;">
+          <div style="font-size:14px; font-weight:500; color:var(--text-stronger-neutral);">Next: Slack and MS Teams</div>
+          <div style="font-size:13px; line-height:19px; color:var(--text-strong-neutral);">Same cases, same copy, re-expressed in each platform's own card syntax (Block Kit for Slack, Adaptive Cards for Teams) by the bot team — not by us. Confirmed so far: buttons, Copy, and jump links work on both; inline pick-a-contact needs a Slack modal or a Teams Task Module (untested); live card updates are untested on both. Where a platform can't match a capability, it falls back to Copy + manual action rather than breaking.</div>
         </div>
       </div>
     </sc-if>
@@ -960,6 +1236,7 @@ class Component extends DCLogic {
       navItems: [
         { key: 'zoommate', label: 'ZoomMate emails' },
         { key: 'workflow', label: 'Workflow emails' },
+        { key: 'chat', label: 'Zoom Chat' },
         { key: 'client', label: 'Client settings' },
         { key: 'admin', label: 'Admin settings' },
         { key: 'hitl', label: 'HITL mapping' },
@@ -973,6 +1250,7 @@ class Component extends DCLogic {
 
       isZoommate: s.tab === 'zoommate',
       isWorkflow: s.tab === 'workflow',
+      isChat: s.tab === 'chat',
       isClient: s.tab === 'client',
       isAdmin: s.tab === 'admin',
       isHitl: s.tab === 'hitl',
@@ -1096,6 +1374,12 @@ class Component extends DCLogic {
       openSheet: () => this.open('Open sheet', 'Opens the generated spreadsheet. The task returns the sheet link so the card can point straight at it.'),
       openReview: () => this.open('Review and continue', 'Opens the item so you can confirm or edit before it continues.'),
       openDetails: () => this.open('View details', 'Shows the full error and offers a retry from the Follow-ups panel.'),
+      openRetry: () => this.open('Retry', 'Re-runs the task from where it left off.'),
+      openConfirm: () => this.open('Confirm', 'Submits your pick inline — the bot updates this same card rather than sending a new message.'),
+      openApprove: () => this.open('Approve & continue', 'Lets the workflow write. Answered inline via the bot’s callback — no tab switch.'),
+      openAllowOnce: () => this.open('Allow once', 'Approves this one run only. The next pending-review node asks again.'),
+      openAllowAlways: () => this.open('Always', 'Approves this node for every future run of this workflow — it stops asking.'),
+      openCancelWorkflow: () => this.open('Cancel workflow', 'Stops the run. Nothing further is written.'),
     };
   }
 }
